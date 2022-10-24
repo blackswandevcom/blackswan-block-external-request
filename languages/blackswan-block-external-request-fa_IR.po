@@ -1,0 +1,56 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"Project-Id-Version: BlackSwan Block External Request\n"
+"POT-Creation-Date: 2022-10-24 23:06+0330\n"
+"PO-Revision-Date: 2022-10-24 23:08+0330\n"
+"Language-Team: Amirhosseinhpv <its@hpv.im>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: blackswan-iran-whitelist.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: Amirhosseinhpv <its@hpv.im>\n"
+"Language: fa_IR\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: blackswan-iran-whitelist.php:40
+msgid "Block External Request"
+msgstr "بلاک کردن درخواست های خارجی"
+
+#: blackswan-iran-whitelist.php:56
+msgid "This request is not allowed"
+msgstr "این درخواست توسط افزونه BlackSwan Block External Request بلاک شده است"
+
+#. Plugin Name of the plugin/theme
+msgid "BlackSwan Block External Request"
+msgstr "قوی سیاه — بلاک کردن درخواست های خارجی"
+
+#. Plugin URI of the plugin/theme
+msgid "https://blackswanlab.ir"
+msgstr "https://blackswanlab.ir"
+
+#. Description of the plugin/theme
+msgid ""
+"Block External Requests made by WordPress in backend so admin-area will load "
+"much faster BUT you will lose some features that require sending external "
+"request like Getting latest Updates and ..."
+msgstr ""
+"بلاک کردن درخواست های خارج از هاست شما که سرعت بخش ادمین وبسایت را افزایش "
+"میدهد؛ اما توجه داشته باشید برخی امکانات مانند دریافت بروزرسانی ممکن است با "
+"مشکل مواجه شوند."
+
+#. Author of the plugin/theme
+msgid "BlackSwan"
+msgstr "قوی سیاه"
+
+#. Author URI of the plugin/theme
+msgid "https://amirhp.com"
+msgstr "https://amirhp.com"
