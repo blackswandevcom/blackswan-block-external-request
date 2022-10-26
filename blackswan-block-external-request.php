@@ -60,7 +60,7 @@ if (!class_exists("\BlackSwan\WordPress\blockExternalRequest")) {
         {
             foreach ($this->block_url_list as $block_url) {
               if (strpos($url, $block_url) !==false) {
-                  return new \WP_Error('http_request_block', __("This request is not allowed", "bswpber"));
+                  return new \WP_Error('http_request_block', __("This request is not allowed", "blackswan-block-external-request"));
               }
             }
 
