@@ -8,8 +8,8 @@ Plugin URI: https://blackswanlab.ir
 Contributors: blackswanlab, amirhpcom
 Donate link: https://amirhp.com/contact/#payment
 Tags: blackswan, amirhp, woocommerce, attribute
-Version: 1.0.0
-Stable tag: 1.0.0
+Version: 1.1.0
+Stable tag: 1.1.0
 Requires PHP: 5.4
 Tested up to: 6.0.3
 Requires at least: 5.0
@@ -35,7 +35,7 @@ if (!class_exists("\BlackSwan\WordPress\blockExternalRequest")) {
         public function __construct()
         {
             $this->td              = "blackswan-block-external-request";
-            $this->version         = "1.0.0";
+            $this->version         = "1.1.0";
             load_plugin_textdomain($this->td, false, dirname(plugin_basename(__FILE__))."/languages/");
             $this->title          = __("Block External Request", "blackswan-block-external-request");
             $this->block_url_list = apply_filters( "BlackSwan/WordPress/blockExternalRequest/block_url_list", array(
@@ -50,17 +50,29 @@ if (!class_exists("\BlackSwan\WordPress\blockExternalRequest")) {
               "wordpress.com",
               "woocommerce.com",
               "reduxframework.com",
+              "wp-rocket.me",
               "easydigitaldownloads.com",
               "github.com",
               "google.com",
+            ));
+			$this->whitelist_urls = apply_filters( "BlackSwan/WordPress/blockExternalRequest/whitelist_urls", array(
+              "//api.wordpress.org/plugins/",
+              "//downloads.wordpress.org/",
             ));
             add_filter("pre_http_request", array($this, "block_external_request"), 10, 3);
         }
         public function block_external_request($preempt, $parsed_args, $url)
         {
             foreach ($this->block_url_list as $block_url) {
-              if (strpos($url, $block_url) !==false) {
-                  return new \WP_Error('http_request_block', __("This request is not allowed", "blackswan-block-external-request"));
+              if (strpos($url, $block_url) !== false) {
+				  
+					foreach ($this->whitelist_urls as $unblock_url) {
+						if (strpos($url, $unblock_url) !== false) {
+						  return $preempt;
+						}
+					}
+				  
+					return new \WP_Error('http_request_block', __("This request is not allowed", "blackswan-block-external-request") . "\n:: {$url}", $url);
               }
             }
 

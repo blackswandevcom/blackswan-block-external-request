@@ -2,8 +2,8 @@
 Contributors: blackswanlab, amirhpcom
 Donate link: https://amirhp.com/contact/#payment
 Tags: blackswan, wordpress request, speed up wordpress
-Version: 1.0.0
-Stable tag: 1.0.0
+Version: 1.1.0
+Stable tag: 1.1.0
 Requires PHP: 7.0
 Tested up to: 6.0
 Requires at least: 5.0
@@ -50,12 +50,17 @@ You can help us improve our works by committing your changes to project's GitHub
 
 == Screenshots ==
 
-1. Product edit screen
+1. Description
 
 
 == Changelog ==
 
-= v1.0.0 | 2022-06-22 | 1401-04-01 =
+= v1.0.1 | 2022-10-30 | 1401-08-08 =
+
+- Added Whitelist URLs
+- Allow Add/Query New Plugin from WordPress Server
+
+= v1.0.0 | 2022-10-22 | 1401-08-01 =
 
 - Initial release for GitHub and WordPress
 
@@ -66,6 +71,11 @@ You can help us improve our works by committing your changes to project's GitHub
 
 
 == Upgrade Notice ==
+
+= v1.0.1 | 2022-10-30 | 1401-08-08 =
+
+- Added Whitelist URLs
+- Allow Add/Query New Plugin from WordPress Server
 
 = v1.0.0 | 2022-10-24 | 1401-08-02 =
 
