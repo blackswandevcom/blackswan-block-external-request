@@ -39,21 +39,22 @@ if (!class_exists("\BlackSwan\WordPress\blockExternalRequest")) {
             load_plugin_textdomain($this->td, false, dirname(plugin_basename(__FILE__))."/languages/");
             $this->title          = __("Block External Request", "blackswan-block-external-request");
             $this->block_url_list = apply_filters( "BlackSwan/WordPress/blockExternalRequest/block_url_list", array(
-              "w.org",
-              "w.com",
-              "wp.org",
-              "wp.com",
-              "wincher.com",
-              "yoa.st",
-              "yoast.com",
-              "wordpress.org",
-              "wordpress.com",
-              "woocommerce.com",
-              "reduxframework.com",
-              "wp-rocket.me",
-              "easydigitaldownloads.com",
-              "github.com",
-              "google.com",
+              "w.org/",
+              "w.com/",
+              "wp.org/",
+              "wp.com/",
+              "wincher.com/",
+              "yoa.st/",
+              "yoast.com/",
+              "wordpress.org/",
+              "wordpress.com/",
+              "woocommerce.com/",
+              "api.ithemes.com/",
+              "reduxframework.com/",
+              "wp-rocket.me/",
+              "easydigitaldownloads.com/",
+              "github.com/",
+              "google.com/",
             ));
 			$this->whitelist_urls = apply_filters( "BlackSwan/WordPress/blockExternalRequest/whitelist_urls", array(
               "//api.wordpress.org/plugins/",
@@ -63,6 +64,8 @@ if (!class_exists("\BlackSwan\WordPress\blockExternalRequest")) {
         }
         public function block_external_request($preempt, $parsed_args, $url)
         {
+		    error_log("❇️ REQUESTED_URL: $url");
+
             foreach ($this->block_url_list as $block_url) {
               if (strpos($url, $block_url) !== false) {
 				  
@@ -71,7 +74,7 @@ if (!class_exists("\BlackSwan\WordPress\blockExternalRequest")) {
 						  return $preempt;
 						}
 					}
-				  
+				    error_log("⛔ BLOCKED_URL: $url");
 					return new \WP_Error('http_request_block', __("This request is not allowed", "blackswan-block-external-request") . "\n:: {$url}", $url);
               }
             }
