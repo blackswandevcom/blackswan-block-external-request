@@ -75,23 +75,72 @@ https://yoursite.com/wp-admin/options-general.php?page=bswan-ber-settings&bswan-
 
 This bypasses **all** blocking rules for that page load. The settings page also automatically skips resource dequeuing (but not HTTP blocking) as an extra safety net.
 
-## Filters
+## Developer Hooks
 
-Developers can modify the blacklist and whitelist programmatically:
+Two filters are available for developers to modify the blacklist and whitelist programmatically. These run on every page load and merge with the settings page values.
+
+### `BlackSwan\block_external_request\block_url_list`
+
+Filter the array of blocked domain strings. Each entry is matched via `strpos()` against the full request URL.
 
 ```php
-// Add domains to blacklist
-add_filter('BlackSwan\block_external_request\block_url_list', function($list) {
-    $list[] = 'analytics.example.com';
-    return $list;
-});
-
-// Add patterns to whitelist
-add_filter('BlackSwan\block_external_request\whitelist_urls', function($list) {
-    $list[] = '//api.example.com/v2/';
-    return $list;
+add_filter( 'BlackSwan\block_external_request\block_url_list', function( $domains ) {
+    // Add a custom domain to block
+    $domains[] = 'analytics.example.com';
+    // Remove a default entry
+    $domains = array_filter( $domains, function( $d ) {
+        return $d !== 'google.com';
+    });
+    return $domains;
 });
 ```
+
+### `BlackSwan\block_external_request\whitelist_urls`
+
+Filter the array of whitelisted URL patterns. If a blocked URL also matches a whitelist pattern (via `strpos()`), the request is allowed through.
+
+```php
+add_filter( 'BlackSwan\block_external_request\whitelist_urls', function( $patterns ) {
+    // Allow a specific API endpoint even if the domain is blacklisted
+    $patterns[] = '//api.example.com/v2/license';
+    return $patterns;
+});
+```
+
+**Note:** Whitelist patterns take priority over blacklist domains. Both filters accept and return a flat array of strings.
+
+## FAQ
+
+### Will this break my site?
+
+It depends on what you block. The default blacklist targets common domains that slow down the admin panel. The default whitelist keeps plugin update API calls working. If something breaks, use the **Pause** button or **Safe Mode** to restore access instantly.
+
+### What's the difference between the three blocking sections?
+
+1. **Server-side HTTP (PHP)** — blocks background `wp_remote_*` requests before they leave the server
+2. **Browser-side by Domain** — dequeues JS/CSS files from blacklisted external domains
+3. **Block Specific Resources** — dequeues individual JS/CSS by matching any part of their URL (local or external)
+
+### I blocked something and now I can't access wp-admin
+
+Add `?bswan-safe=1` to any admin URL. This bypasses all blocking for that page load. The settings page also auto-skips resource blocking.
+
+### Does this affect the frontend?
+
+Server-side HTTP blocking applies everywhere. Resource blocking (sections 2 and 3) has separate backend/frontend toggles.
+
+### Can I export/import settings between sites?
+
+Yes. Use the Export/Import panel in the sidebar to download or upload all settings as a single JSON file.
+
+### How can I contribute?
+
+We welcome contributions! You can:
+
+- **Report bugs or suggest features** on [WordPress.org Support](https://wordpress.org/support/plugin/blackswan-block-external-request/) or [GitHub Issues](https://github.com/blackswandevcom/blackswan-block-external-request/issues)
+- **Submit pull requests** on [GitHub](https://github.com/blackswandevcom/blackswan-block-external-request/)
+- **Translate** the plugin via [WordPress.org Translate](https://translate.wordpress.org/projects/wp-plugins/blackswan-block-external-request/)
+- **Rate the plugin** [5 stars](https://wordpress.org/support/plugin/blackswan-block-external-request/reviews/#new-post) if you find it useful
 
 ## Changelog
 

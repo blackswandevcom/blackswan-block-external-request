@@ -54,11 +54,35 @@ Block individual JS or CSS files by full URL, partial path, or even just a filen
 * Agencies managing client sites that don't need update checks
 * Anyone who wants a faster wp-admin experience
 
+= Developer Hooks =
+
+Two filters are available for developers to customize blocking behavior programmatically. These run on every page load and merge with the values from the settings page.
+
+**`BlackSwan\block_external_request\block_url_list`**
+
+Filter the array of blocked domain strings. Each entry is matched via `strpos()` against the full request URL.
+
+`add_filter( 'BlackSwan\block_external_request\block_url_list', function( $domains ) {
+    $domains[] = 'analytics.example.com';
+    return $domains;
+});`
+
+**`BlackSwan\block_external_request\whitelist_urls`**
+
+Filter the array of whitelisted URL patterns. If a blocked URL also matches a whitelist pattern (via `strpos()`), the request is allowed through.
+
+`add_filter( 'BlackSwan\block_external_request\whitelist_urls', function( $patterns ) {
+    $patterns[] = '//api.example.com/v2/license';
+    return $patterns;
+});`
+
+Whitelist patterns take priority over blacklist domains. Both filters accept and return a flat array of strings.
+
 = Links =
 
 * [Developer — AmirhpCom](https://amirhp.com/)
 * [BlackSwan](https://blackswandev.com/)
-* [Plugin Github Page](https://github.com/blackswandevcom/blackswan-block-external-request/)
+* [Plugin GitHub Page](https://github.com/blackswandevcom/blackswan-block-external-request/)
 * [Rate 5-Star](https://wordpress.org/support/plugin/blackswan-block-external-request/reviews/#new-post)
 * [Support & Issues](https://wordpress.org/support/plugin/blackswan-block-external-request/)
 
@@ -103,6 +127,15 @@ All settings are stored as a single JSON value in `wp_options` with `autoload=no
 = Can I export/import settings between sites? =
 
 Yes. The Export/Import panel in the sidebar lets you download all settings as a JSON file and import it on another site.
+
+= How can I contribute? =
+
+We welcome contributions! You can:
+
+* Report bugs or suggest features on [WordPress.org Support](https://wordpress.org/support/plugin/blackswan-block-external-request/) or [GitHub Issues](https://github.com/blackswandevcom/blackswan-block-external-request/issues)
+* Submit pull requests on [GitHub](https://github.com/blackswandevcom/blackswan-block-external-request/)
+* Translate the plugin via [WordPress.org Translate](https://translate.wordpress.org/projects/wp-plugins/blackswan-block-external-request/)
+* Rate the plugin [5 stars](https://wordpress.org/support/plugin/blackswan-block-external-request/reviews/#new-post) if you find it useful
 
 == Screenshots ==
 
