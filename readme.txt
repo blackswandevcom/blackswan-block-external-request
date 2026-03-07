@@ -9,7 +9,7 @@ Stable tag: 2.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Take control of outgoing HTTP requests in WordPress. Block unwanted external calls to speed up your admin panel, with full blacklist/whitelist management, resource blocking, and one-click pause.
+Block unwanted external HTTP requests in WordPress. Blacklist/whitelist management, resource blocking, and one-click pause.
 
 == Description ==
 
