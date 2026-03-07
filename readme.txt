@@ -140,6 +140,7 @@ We welcome contributions! You can:
 == Screenshots ==
 
 1. Settings page with all sections and sidebar
+2. Previous version information with no UI
 
 == Changelog ==
 
