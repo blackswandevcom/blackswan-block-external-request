@@ -19,7 +19,7 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/03/07 17:23:35
+ * @Last modified time: 2026/03/07 20:32:15
 */
 
 namespace BlackSwan;
@@ -191,7 +191,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                     foreach ($this->whitelist_urls as $wu) {
                         if (strpos($url, $wu) !== false) return $preempt;
                     }
-                    return new \WP_Error('http_request_block', __("This request is not allowed", $this->td) . "\n:: {$url}", $url);
+                    return new \WP_Error('http_request_block', __("This request is blocked by 'BlackSwan - Block External Requests' plugin", $this->td) . "\n:: {$url}", $url);
                 }
             }
             return $preempt;
@@ -418,7 +418,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                                 </div>
                                 <div class="inside">
                                     <p class="description"><?php _e('Block individual JS or CSS files by matching against their enqueued URL. Full URL, partial path, or even just a filename with extension — anything that appears in the resource URL will match. Works for both local and external resources.', $this->td); ?></p>
-                                    <p class="description" style="margin-top:4px;"><?php _e('Examples: <code>/persian-woocommerce/assets/fonts/admin-font.css</code> · <code>admin-font.css</code> · <code>https://cdn.example.com/lib.js</code>', $this->td); ?></p>
+                                    <p class="description" style="margin-top:4px;"><?php sprintf(_e('Examples: %s · %s · %s', $this->td), '<code>/persian-woocommerce/assets/fonts/admin-font.css</code>', '<code>admin-font.css</code>', '<code>https://cdn.example.com/lib.js</code>'); ?></p>
                                     <div class="bswan-input-row" style="margin:10px 0 8px;">
                                         <input type="text" id="bswan-br-input" class="regular-text" placeholder="<?php esc_attr_e('Full URL, partial path, or filename.ext', $this->td); ?>">
 

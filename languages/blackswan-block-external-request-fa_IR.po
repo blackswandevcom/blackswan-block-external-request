@@ -1,56 +1,371 @@
+#, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "Project-Id-Version: BlackSwan Block External Request\n"
-"POT-Creation-Date: 2022-10-24 23:06+0330\n"
-"PO-Revision-Date: 2022-10-24 23:08+0330\n"
+"POT-Creation-Date: 2026-03-07 20:32+0330\n"
+"PO-Revision-Date: 2026-03-07 20:33+0330\n"
+"Last-Translator: Amirhossein Hosseinpour <its@amirhp.com>\n"
 "Language-Team: Amirhosseinhpv <its@hpv.im>\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: blackswan-iran-whitelist.php\n"
+"X-Poedit-WPHeader: blackswan-block-external-request.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"Last-Translator: Amirhosseinhpv <its@hpv.im>\n"
-"Language: fa_IR\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: blackswan-iran-whitelist.php:40
+#: blackswan-block-external-request.php:92
 msgid "Block External Request"
-msgstr "بلاک کردن درخواست های خارجی"
+msgstr "مسدودسازی درخواست‌های خارجی"
 
-#: blackswan-iran-whitelist.php:56
-msgid "This request is not allowed"
-msgstr "این درخواست توسط افزونه BlackSwan Block External Request بلاک شده است"
+#: blackswan-block-external-request.php:152
+#: blackswan-block-external-request.php:157
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: blackswan-block-external-request.php:162
+#: blackswan-block-external-request.php:182
+msgid "Permission denied."
+msgstr "دسترسی غیرمجاز است."
+
+#: blackswan-block-external-request.php:177
+msgid "Settings saved successfully."
+msgstr "تنظیمات با موفقیت ذخیره شد."
+
+#: blackswan-block-external-request.php:185
+msgid "Plugin is now paused. All blocking is disabled."
+msgstr "افزونه متوقف شد. همه محدودیت‌ها غیرفعال هستند."
+
+#: blackswan-block-external-request.php:185
+msgid "Plugin is now active. Blocking rules are enforced."
+msgstr "افزونه فعال شد. قوانین مسدودسازی اعمال می‌شوند."
+
+#: blackswan-block-external-request.php:194
+msgid "This request is blocked by 'BlackSwan - Block External Requests' plugin"
+msgstr ""
+"این درخواست توسط افزونه «قوی سیاه - مسدودسازی درخواست‌های خارجی» مسدود شده است"
+
+#: blackswan-block-external-request.php:311
+#, php-format
+msgid "Developed by %s — Another Free & Open-source project by %s"
+msgstr "توسعه توسط %s — پروژه‌ای رایگان و متن‌باز دیگر از %s"
+
+#: blackswan-block-external-request.php:315
+msgid "BlackSwan - Block External Request"
+msgstr "قوی سیاه - مسدودسازی درخواست‌های خارجی"
+
+#: blackswan-block-external-request.php:318
+msgid "Safe Mode is active."
+msgstr "حالت امن فعال است."
+
+#: blackswan-block-external-request.php:318
+msgid "All blocking rules are temporarily bypassed on this page load."
+msgstr "تمام قوانین مسدودسازی در بارگذاری این صفحه به‌طور موقت دور زده می‌شوند."
+
+#: blackswan-block-external-request.php:328
+msgid "Server-side HTTP Requests (PHP)"
+msgstr "درخواست‌های HTTP سمت سرور (PHP)"
+
+#: blackswan-block-external-request.php:329
+#: blackswan-block-external-request.php:393
+#: blackswan-block-external-request.php:417
+msgid "Toggle panel"
+msgstr "باز و بسته کردن پنل"
+
+#: blackswan-block-external-request.php:332
+msgid ""
+"Background requests made by WordPress, plugins, and themes via PHP (e.g. update "
+"checks, license verification, REST API calls). They happen on the server and are "
+"invisible to the browser."
+msgstr ""
+"درخواست‌های پس‌زمینه‌ای که وردپرس، افزونه‌ها و قالب‌ها از طریق PHP انجام می‌دهند "
+"(مانند بررسی به‌روزرسانی، تأیید مجوز، فراخوانی REST API). این درخواست‌ها در سمت "
+"سرور اجرا شده و برای مرورگر قابل مشاهده نیستند."
+
+#: blackswan-block-external-request.php:337
+msgid "Blacklist (Blocked Domains)"
+msgstr "فهرست سیاه (دامنه‌های مسدودشده)"
+
+#: blackswan-block-external-request.php:342
+msgid "e.g. example.com"
+msgstr "برای مثال: example.com"
+
+#: blackswan-block-external-request.php:343
+#: blackswan-block-external-request.php:368
+#: blackswan-block-external-request.php:435
+msgid "Add"
+msgstr "افزودن"
+
+#: blackswan-block-external-request.php:349
+msgid "Domain / URL Pattern"
+msgstr "الگوی دامنه / آدرس"
+
+#: blackswan-block-external-request.php:350
+#: blackswan-block-external-request.php:375
+#: blackswan-block-external-request.php:443
+#: blackswan-block-external-request.php:460
+msgid "Actions"
+msgstr "عملیات"
+
+#: blackswan-block-external-request.php:356
+#: blackswan-block-external-request.php:381
+#: blackswan-block-external-request.php:449
+msgid "Delete All"
+msgstr "حذف همه"
+
+#: blackswan-block-external-request.php:362
+msgid "Whitelist (Allowed URL Patterns)"
+msgstr "فهرست مجاز (الگوی URL های مجاز)"
+
+#: blackswan-block-external-request.php:367
+msgid "e.g. //api.wordpress.org/plugins/"
+msgstr "برای مثال: //api.wordpress.org/plugins/"
+
+#: blackswan-block-external-request.php:374
+msgid "URL Pattern (whitelisted)"
+msgstr "الگوی آدرس (مجاز)"
+
+#: blackswan-block-external-request.php:392
+msgid "Browser-side Resources by Domain (JS / CSS)"
+msgstr "منابع سمت مرورگر بر اساس دامنه (JS / CSS)"
+
+#: blackswan-block-external-request.php:396
+msgid ""
+"When enabled, enqueued JS/CSS from blacklisted domains will be deregistered. "
+"Only external resources are affected. Whitelisted patterns are respected."
+msgstr ""
+"در صورت فعال‌سازی، فایل‌های JS/CSS بارگذاری‌شده از دامنه‌های فهرست سیاه حذف می‌شوند. "
+"فقط منابع خارجی تحت تأثیر قرار می‌گیرند و الگوهای فهرست سفید رعایت می‌شوند."
+
+#: blackswan-block-external-request.php:401
+msgid "Admin Panel (wp-admin)"
+msgstr "پنل مدیریت (wp-admin)"
+
+#: blackswan-block-external-request.php:406
+msgid "Public Frontend"
+msgstr "بخش عمومی سایت"
+
+#: blackswan-block-external-request.php:416
+msgid "Block Specific Resources (by URL)"
+msgstr "مسدودسازی منابع خاص (بر اساس آدرس)"
+
+#: blackswan-block-external-request.php:420
+msgid ""
+"Block individual JS or CSS files by matching against their enqueued URL. Full "
+"URL, partial path, or even just a filename with extension — anything that "
+"appears in the resource URL will match. Works for both local and external "
+"resources."
+msgstr ""
+"مسدودسازی فایل‌های JS یا CSS با تطبیق آدرس بارگذاری‌شده آنها. آدرس کامل، مسیر "
+"نسبی، یا حتی فقط نام فایل با پسوند — هر چیزی که در آدرس منبع وجود داشته باشد "
+"تطبیق داده می‌شود. برای منابع داخلی و خارجی کار می‌کند."
+
+#: blackswan-block-external-request.php:421
+#, php-format
+msgid "Examples: %s · %s · %s"
+msgstr "نمونه‌ها: %s · %s · %s"
+
+#: blackswan-block-external-request.php:423
+msgid "Full URL, partial path, or filename.ext"
+msgstr "آدرس کامل، مسیر نسبی، یا نام‌فایل.پسوند"
+
+#: blackswan-block-external-request.php:427
+#: blackswan-block-external-request.php:1083
+#: blackswan-block-external-request.php:1084
+msgid "Backend"
+msgstr "سمت مدیریت (بک‌اند)"
+
+#: blackswan-block-external-request.php:432
+#: blackswan-block-external-request.php:1087
+#: blackswan-block-external-request.php:1088
+msgid "Frontend"
+msgstr "بخش عمومی"
+
+#: blackswan-block-external-request.php:441
+msgid "URL Pattern"
+msgstr "الگوی آدرس"
+
+#: blackswan-block-external-request.php:442
+msgid "Conditions"
+msgstr "شرایط"
+
+#: blackswan-block-external-request.php:463
+msgid "Save All Settings"
+msgstr "ذخیره همه تنظیمات"
+
+#: blackswan-block-external-request.php:469
+#: blackswan-block-external-request.php:1192
+msgid "Resume"
+msgstr "رزومه"
+
+#: blackswan-block-external-request.php:469
+#: blackswan-block-external-request.php:1199
+msgid "Pause"
+msgstr "توقف موقت"
+
+#: blackswan-block-external-request.php:474
+#: blackswan-block-external-request.php:1195
+msgid "Paused — all blocking disabled"
+msgstr "متوقف - همه محدودیت‌ها غیرفعال"
+
+#: blackswan-block-external-request.php:474
+#: blackswan-block-external-request.php:1202
+msgid "Active — blocking rules enforced"
+msgstr "فعال - قوانین مسدودسازی اعمال می‌شوند"
+
+#: blackswan-block-external-request.php:481
+msgid "Safe Mode"
+msgstr "حالت امن"
+
+#: blackswan-block-external-request.php:484
+msgid ""
+"Temporarily disable <strong>all</strong> blocking for a page load. Resource "
+"dequeuing is already skipped on this settings page — safe mode is for other "
+"broken admin pages."
+msgstr ""
+"غیرفعالسازی موقت <strong>همه</strong> محدودیت‌ها برای بارگذاری یک صفحه. حذف منابع "
+"از صف بارگذاری در این صفحه تنظیمات انجام نمی‌شود — حالت امن برای سایر صفحات "
+"مدیریتی مشکل‌دار است."
+
+#: blackswan-block-external-request.php:485
+msgid "Open in Safe Mode"
+msgstr "باز کردن در حالت امن"
+
+#: blackswan-block-external-request.php:486
+msgid "Tip: Add <code>&bswan-safe=1</code> to any admin URL."
+msgstr "نکته: <code>&bswan-safe=1</code> را به هر آدرس مدیریتی اضافه کنید."
+
+#: blackswan-block-external-request.php:492
+msgid "Tools"
+msgstr "ابزارها"
+
+#: blackswan-block-external-request.php:496
+msgid "Query Monitor is active."
+msgstr "افزونه Query Monitor فعال است."
+
+#: blackswan-block-external-request.php:498
+msgid "Activate Query Monitor"
+msgstr "فعالسازی کوئری مانیتور"
+
+#: blackswan-block-external-request.php:499
+msgid ""
+"Installed but not active. Activate to inspect HTTP requests and enqueued "
+"resources."
+msgstr ""
+"نصب شده اما فعال نیست. برای بررسی درخواست‌های HTTP و منابع بارگذاری‌شده فعالش کنید."
+
+#: blackswan-block-external-request.php:501
+msgid "Install Query Monitor"
+msgstr "نصب Query Monitor"
+
+#: blackswan-block-external-request.php:502
+msgid "See every HTTP request and enqueued resource. Highly recommended."
+msgstr "همه درخواست‌های HTTP و منابع بارگذاری‌شده را مشاهده کنید. پیشنهاد می‌شود."
+
+#: blackswan-block-external-request.php:509
+msgid "Export / Import"
+msgstr "خروجی / ورودی"
+
+#: blackswan-block-external-request.php:512
+msgid "All plugin settings as a single JSON file."
+msgstr "تمام تنظیمات افزونه بصورت یک فایل جیسان واحد."
+
+#: blackswan-block-external-request.php:513
+msgid "Export All Settings"
+msgstr "خروجی همه تنظیمات"
+
+#: blackswan-block-external-request.php:514
+msgid "Import Settings"
+msgstr "ورودی تنظیمات"
+
+#: blackswan-block-external-request.php:522
+msgid "Disclaimer"
+msgstr "سلب مسئولیت"
+
+#: blackswan-block-external-request.php:525
+msgid ""
+"This plugin blocks outgoing HTTP requests and browser resources. May prevent "
+"updates, license checks, fonts, CDN libraries, etc. Use at your own risk. Always "
+"maintain backups."
+msgstr ""
+"این افزونه درخواست‌های HTTP خروجی و منابع مرورگر را مسدود می‌کند. ممکن است از "
+"به‌روزرسانی‌ها، بررسی مجوز، فونت‌ها، کتابخانه‌های CDN و غیره جلوگیری کند. استفاده با "
+"مسئولیت خودتان است. همیشه از سایت خود پشتیبان بگیرید."
+
+#: blackswan-block-external-request.php:961
+#: blackswan-block-external-request.php:1071
+msgid "No items."
+msgstr "هیچ موردی وجود ندارد."
+
+#: blackswan-block-external-request.php:964
+#: blackswan-block-external-request.php:1093
+msgid "Edit"
+msgstr "ویرایش"
+
+#: blackswan-block-external-request.php:964
+#: blackswan-block-external-request.php:1094
+msgid "Delete"
+msgstr "حذف"
+
+#: blackswan-block-external-request.php:1014
+msgid "Are you sure you want to delete all items?"
+msgstr "آیا مطمئن هستید میخواهید تمامی موارد را حذف کنید؟"
+
+#: blackswan-block-external-request.php:1047
+msgid "Invalid JSON."
+msgstr "‫JSON نامعتبر است."
+
+#: blackswan-block-external-request.php:1058
+msgid "Imported. Save to apply."
+msgstr "ورود تنظیمات انجام شد. برای اعمال ذخیره کنید."
+
+#: blackswan-block-external-request.php:1060
+msgid "Failed to parse JSON."
+msgstr "تجزیه JSON امکان‌پذیر نبود."
+
+#: blackswan-block-external-request.php:1146
+msgid "Are you sure?"
+msgstr "آیا مطمئن هستید؟"
+
+#: blackswan-block-external-request.php:1170
+msgid "Error."
+msgstr "خطا."
+
+#: blackswan-block-external-request.php:1173
+msgid "Request failed."
+msgstr "درخواست با شکست مواجه شد."
 
 #. Plugin Name of the plugin/theme
-msgid "BlackSwan Block External Request"
-msgstr "قوی سیاه — بلاک کردن درخواست های خارجی"
+msgid "BlackSwan | Block External Request"
+msgstr "قوی سیاه - مسدودسازی درخواست‌های خارجی"
 
 #. Plugin URI of the plugin/theme
-msgid "https://blackswanlab.ir"
-msgstr "https://blackswanlab.ir"
+msgid "https://github.com/blackswandevcom/blackswan-block-external-request/"
+msgstr "https://github.com/blackswandevcom/blackswan-block-external-request/"
 
 #. Description of the plugin/theme
 msgid ""
-"Block External Requests made by WordPress in backend so admin-area will load "
-"much faster BUT you will lose some features that require sending external "
-"request like Getting latest Updates and ..."
+"Take control of outgoing HTTP requests in WordPress. Block unwanted external "
+"calls to speed up your admin panel, with full blacklist/whitelist management and "
+"one-click pause."
 msgstr ""
-"بلاک کردن درخواست های خارج از هاست شما که سرعت بخش ادمین وبسایت را افزایش "
-"میدهد؛ اما توجه داشته باشید برخی امکانات مانند دریافت بروزرسانی ممکن است با "
-"مشکل مواجه شوند."
+"کنترل درخواست‌های HTTP خروجی در وردپرس را به دست بگیرید. با مدیریت کامل فهرست "
+"سیاه/سفید و توقف یک‌کلیکی، درخواست‌های خارجی ناخواسته را مسدود و پیشخوان مدیریت را "
+"سریع‌تر کنید."
 
 #. Author of the plugin/theme
-msgid "BlackSwan"
-msgstr "قوی سیاه"
+msgid "AmirhpCom"
+msgstr "امیرحسین حسین پور"
 
 #. Author URI of the plugin/theme
-msgid "https://amirhp.com"
-msgstr "https://amirhp.com"
+msgid "https://amirhp.com/"
+msgstr "https://amirhp.com/"
+
+#~ msgid "This request is not allowed"
+#~ msgstr "این درخواست مجاز نیست"
