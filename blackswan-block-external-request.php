@@ -8,8 +8,8 @@
  Contributors: blackswanlab, amirhpcom
  Donate link: https://amirhp.com/contact/#payment
  Tags: external requests, performance, blacklist, whitelist, block http requests
- Version: 2.6.0
- Stable tag: 2.6.0
+ Version: 2.6.1
+ Stable tag: 2.6.1
  Requires PHP: 5.4
  Tested up to: 6.8
  Requires at least: 5.0
@@ -19,7 +19,7 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/03/07 20:32:15
+ * @Last modified time: 2026/03/08 10:04:19
 */
 
 namespace BlackSwan;
@@ -418,7 +418,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                                 </div>
                                 <div class="inside">
                                     <p class="description"><?php _e('Block individual JS or CSS files by matching against their enqueued URL. Full URL, partial path, or even just a filename with extension — anything that appears in the resource URL will match. Works for both local and external resources.', $this->td); ?></p>
-                                    <p class="description" style="margin-top:4px;"><?php sprintf(_e('Examples: %s · %s · %s', $this->td), '<code>/persian-woocommerce/assets/fonts/admin-font.css</code>', '<code>admin-font.css</code>', '<code>https://cdn.example.com/lib.js</code>'); ?></p>
+                                    <p class="description" style="margin-top:4px;"><?php printf(__('Examples: %s · %s · %s', $this->td), '<code>/persian-woocommerce/assets/fonts/admin-font.css</code>', '<code>admin-font.css</code>', '<code>https://cdn.example.com/lib.js</code>'); ?></p>
                                     <div class="bswan-input-row" style="margin:10px 0 8px;">
                                         <input type="text" id="bswan-br-input" class="regular-text" placeholder="<?php esc_attr_e('Full URL, partial path, or filename.ext', $this->td); ?>">
 
