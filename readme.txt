@@ -5,7 +5,7 @@ Tags: external requests, performance, blacklist, whitelist, block http requests
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 2.6.1
+Stable tag: 2.6.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -144,6 +144,11 @@ We welcome contributions! You can:
 
 == Changelog ==
 
+= 2.6.2 =
+* Added pre-defined list of common analytics/tracking domains to the default blacklist (e.g. Google Analytics, Hotjar, Matomo etc.)
+* Added pre-defined list of common Iranian payment gateway domains to the default blacklist (e.g. Zarinpal, Pay.ir, IDPay etc.)
+* DEV: Added `BlackSwan\block_external_request\blocked_resources` filter to allow programmatic blocking of specific JS/CSS resources by URL pattern
+
 = 2.6.0 =
 * New: Modern liquid glass UI with frosted postboxes and dot-grid background
 * New: Inline Lucide SVG icons — fully standalone, zero external dependencies
@@ -216,11 +221,15 @@ We welcome contributions! You can:
 
 == Upgrade Notice ==
 
+= 2.6.2 =
+* Added pre-defined list of common analytics/tracking domains to the default blacklist (e.g. Google Analytics, Hotjar, Matomo etc.)
+* Added pre-defined list of common Iranian payment gateway domains to the default blacklist (e.g. Zarinpal, Pay.ir, IDPay etc.)
+* DEV: Added `BlackSwan\block_external_request\blocked_resources` filter to allow programmatic blocking of specific JS/CSS resources by URL pattern
+
 = 2.6.0 =
 Major UI overhaul with liquid glass design and inline SVG icons. Fully standalone — no external dependencies. Safe to upgrade, all settings preserved.
 
-= 2.0.0 =
-Complete rewrite with visual settings page. Your existing blocking rules will be migrated to the new format automatically on first load.
+For the full changelog, see [GitHub Repository](https://github.com/blackswandevcom/blackswan-block-external-request?tab=readme-ov-file#changelog).
 
 == Copyright ==
 

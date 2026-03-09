@@ -8,8 +8,8 @@
  Contributors: blackswanlab, amirhpcom
  Donate link: https://amirhp.com/contact/#payment
  Tags: external requests, performance, blacklist, whitelist, block http requests
- Version: 2.6.1
- Stable tag: 2.6.1
+ Version: 2.6.2
+ Stable tag: 2.6.2
  Requires PHP: 5.4
  Tested up to: 6.8
  Requires at least: 5.0
@@ -19,7 +19,7 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/03/08 10:04:19
+ * @Last modified time: 2026/03/10 00:13:55
 */
 
 namespace BlackSwan;
@@ -54,6 +54,91 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
         private static $default_whitelist = array(
             "//api.wordpress.org/plugins/",
             "//downloads.wordpress.org/",
+            'zarinpal.com',
+            'idpay.ir',
+            'pay.ir',
+            'nextpay.org',
+            'zibal.ir',
+            'vandar.io',
+            'payping.ir',
+            'payping.io',
+            'bitpay.ir',
+            'paystar.ir',
+            'irandargah.com',
+            'aqayepardakht.ir',
+            'jibit.ir',
+            'digipay.ir',
+            'mydigipay.com',
+            'shaparak.ir',
+            'sep.ir',
+            'pec.ir',
+            'pep.co.ir',
+            'sadadpsp.ir',
+            'behpardakht.com',
+            'irankish.com',
+            'fanavacard.ir',
+            'ecd-co.ir',
+            'pna.co.ir',
+            'persianswitch.com',
+            'asanpardakht.ir',
+            'sepehrpay.com',
+            'snapppay.ir',
+            'snapp.ir',
+            'sms.ir',
+            'ippanel.com',
+            'melipayamak.com',
+            'payamak-panel.com',
+            'farazsms.com',
+            'kavenegar.com',
+            'ghasedak.me',
+            'magfa.com',
+            'parsgreen.com',
+            'payamito.com',
+            'webone-sms.com',
+            'raygansms.com',
+            'niksms.com',
+            'post.ir',
+            'tipaxco.com',
+            'alopeyk.com',
+            'tapin.ir',
+            'postex.ir',
+            'chapar.co',
+            'torob.com',
+            'torob.ir',
+            'emalls.ir',
+        );
+        private static $default_resources = array(
+            ['url' => 'persian-woocommerce/assets/fonts/admin-font.css', 'backend' => true, 'frontend' => true],
+            ['url' => 'googletagmanager.com'         , 'backend' => true, 'frontend' => true],
+            ['url' => 'google-analytics.com'         , 'backend' => true, 'frontend' => true],
+            ['url' => 'analytics.js'                 , 'backend' => true, 'frontend' => true],
+            ['url' => 'gtag/js'                      , 'backend' => true, 'frontend' => true],
+            ['url' => 'tagmanager'                   , 'backend' => true, 'frontend' => true],
+            ['url' => 'googlesyndication.com'        , 'backend' => true, 'frontend' => true],
+            ['url' => 'doubleclick.net'              , 'backend' => true, 'frontend' => true],
+            ['url' => 'googleadservices.com'         , 'backend' => true, 'frontend' => true],
+            ['url' => 'adsbygoogle'                  , 'backend' => true, 'frontend' => true],
+            ['url' => 'pagead2.googlesyndication.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'yektanet'                     , 'backend' => true, 'frontend' => true],
+            ['url' => 'cdn.yektanet.com'             , 'backend' => true, 'frontend' => true],
+            ['url' => 'rg.complete.js'               , 'backend' => true, 'frontend' => true],
+            ['url' => 'tapsell'                      , 'backend' => true, 'frontend' => true],
+            ['url' => 'adivery'                      , 'backend' => true, 'frontend' => true],
+            ['url' => 'mediaad'                      , 'backend' => true, 'frontend' => true],
+            ['url' => 'adtrace'                      , 'backend' => true, 'frontend' => true],
+            ['url' => 'cafebazaar'                   , 'backend' => true, 'frontend' => true],
+            ['url' => 'connect.facebook.net'         , 'backend' => true, 'frontend' => true],
+            ['url' => 'clarity.ms'                   , 'backend' => true, 'frontend' => true],
+            ['url' => 'hotjar'                       , 'backend' => true, 'frontend' => true],
+            ['url' => 'tiktok'                       , 'backend' => true, 'frontend' => true],
+            ['url' => 'snap.licdn.com'               , 'backend' => true, 'frontend' => true],
+            ['url' => 'linkedin'                     , 'backend' => true, 'frontend' => true],
+            ['url' => 'matomo'                       , 'backend' => true, 'frontend' => true],
+            ['url' => 'plausible'                    , 'backend' => true, 'frontend' => true],
+            ['url' => 'umami'                        , 'backend' => true, 'frontend' => true],
+            ['url' => 'mixpanel'                     , 'backend' => true, 'frontend' => true],
+            ['url' => 'segment.com'                  , 'backend' => true, 'frontend' => true],
+            ['url' => 'sentry.io'                    , 'backend' => true, 'frontend' => true],
         );
 
         private static function icon($name, $color = 'currentColor', $size = 18) {
@@ -87,7 +172,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
 
         public function __construct() {
             $this->td      = "blackswan-block-external-request";
-            $this->version = "2.5.0";
+            $this->version = "2.6.2";
             load_plugin_textdomain($this->td, false, dirname(plugin_basename(__FILE__)) . "/languages/");
             $this->title = __("Block External Request", $this->td);
 
@@ -132,7 +217,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
         }
 
         private function load_settings() {
-            $defaults = array('blacklist' => self::$default_blacklist, 'whitelist' => self::$default_whitelist, 'paused' => false, 'block_resources_backend' => false, 'block_resources_frontend' => false, 'blocked_resources' => array());
+            $defaults = array('blacklist' => self::$default_blacklist, 'whitelist' => self::$default_whitelist, 'paused' => false, 'block_resources_backend' => false, 'block_resources_frontend' => false, 'blocked_resources' => self::$default_resources);
             $raw = get_option($this->option_key, false);
             if ($raw === false) {
                 $this->settings = $defaults;
@@ -239,6 +324,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
         public function dequeue_specific_resources() {
             $ia = is_admin();
             $bl = !empty($this->settings['blocked_resources']) ? $this->settings['blocked_resources'] : array();
+            $bl = apply_filters("BlackSwan\block_external_request\blocked_resources", $bl);
             if (empty($bl)) return;
             $act = array();
             foreach ($bl as $it) {

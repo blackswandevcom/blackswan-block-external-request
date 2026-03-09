@@ -144,6 +144,11 @@ We welcome contributions! You can:
 
 ## Changelog
 
+### 2.6.2
+- Added pre-defined list of common analytics/tracking domains to the default blacklist (e.g. Google Analytics, Hotjar, Matomo etc.)
+- Added pre-defined list of common Iranian payment gateway domains to the default blacklist (e.g. Zarinpal, Pay.ir, IDPay etc.)
+- DEV: Added `BlackSwan\block_external_request\blocked_resources` filter to allow programmatic blocking of specific JS/CSS resources by URL pattern
+
 ### 2.6.0
 - Liquid glass UI with frosted postboxes and dot-grid background
 - Inline Lucide SVG icons — fully standalone, zero external dependencies
