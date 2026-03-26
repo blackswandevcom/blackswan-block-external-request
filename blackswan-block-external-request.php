@@ -8,8 +8,8 @@
  Contributors: blackswanlab, amirhpcom
  Donate link: https://amirhp.com/contact/#payment
  Tags: external requests, performance, blacklist, whitelist, block http requests
- Version: 2.6.2
- Stable tag: 2.6.2
+ Version: 2.7.0
+ Stable tag: 2.7.0
  Requires PHP: 5.4
  Tested up to: 6.8
  Requires at least: 5.0
@@ -19,11 +19,9 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/03/10 00:13:55
+ * @Last modified time: 2026/03/25 17:02:28
 */
-
 namespace BlackSwan;
-
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>BlackSwan | Block External Request Plugin :: Developed by Amirhp-com (<a href='https://amirhp.com/'>https://amirhp.com/</a>)</small>");
 if (!class_exists("\BlackSwan\blockExternalRequest")) {
     class blockExternalRequest {
@@ -50,10 +48,16 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             "easydigitaldownloads.com",
             "github.com",
             "google.com",
+            "rtl-theme.com",
+            "zhaket",
+            "gravatar.com",
+            "googleapis",
+            "fonts.googleapis.com",
+            "my.elementor.com"
         );
         private static $default_whitelist = array(
-            "//api.wordpress.org/plugins/",
-            "//downloads.wordpress.org/",
+            // "//api.wordpress.org/plugins/",
+            // "//downloads.wordpress.org/",
             'zarinpal.com',
             'idpay.ir',
             'pay.ir',
@@ -109,38 +113,47 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
         );
         private static $default_resources = array(
             ['url' => 'persian-woocommerce/assets/fonts/admin-font.css', 'backend' => true, 'frontend' => true],
-            ['url' => 'googletagmanager.com'         , 'backend' => true, 'frontend' => true],
-            ['url' => 'google-analytics.com'         , 'backend' => true, 'frontend' => true],
-            ['url' => 'analytics.js'                 , 'backend' => true, 'frontend' => true],
-            ['url' => 'gtag/js'                      , 'backend' => true, 'frontend' => true],
-            ['url' => 'tagmanager'                   , 'backend' => true, 'frontend' => true],
-            ['url' => 'googlesyndication.com'        , 'backend' => true, 'frontend' => true],
-            ['url' => 'doubleclick.net'              , 'backend' => true, 'frontend' => true],
-            ['url' => 'googleadservices.com'         , 'backend' => true, 'frontend' => true],
-            ['url' => 'adsbygoogle'                  , 'backend' => true, 'frontend' => true],
+            ['url' => 'googletagmanager.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'google-analytics.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'analytics.js', 'backend' => true, 'frontend' => true],
+            ['url' => 'gtag/js', 'backend' => true, 'frontend' => true],
+            ['url' => 'tagmanager', 'backend' => true, 'frontend' => true],
+            ['url' => 'googlesyndication.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'doubleclick.net', 'backend' => true, 'frontend' => true],
+            ['url' => 'googleadservices.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'adsbygoogle', 'backend' => true, 'frontend' => true],
             ['url' => 'pagead2.googlesyndication.com', 'backend' => true, 'frontend' => true],
-            ['url' => 'yektanet'                     , 'backend' => true, 'frontend' => true],
-            ['url' => 'cdn.yektanet.com'             , 'backend' => true, 'frontend' => true],
-            ['url' => 'rg.complete.js'               , 'backend' => true, 'frontend' => true],
-            ['url' => 'tapsell'                      , 'backend' => true, 'frontend' => true],
-            ['url' => 'adivery'                      , 'backend' => true, 'frontend' => true],
-            ['url' => 'mediaad'                      , 'backend' => true, 'frontend' => true],
-            ['url' => 'adtrace'                      , 'backend' => true, 'frontend' => true],
-            ['url' => 'cafebazaar'                   , 'backend' => true, 'frontend' => true],
-            ['url' => 'connect.facebook.net'         , 'backend' => true, 'frontend' => true],
-            ['url' => 'clarity.ms'                   , 'backend' => true, 'frontend' => true],
-            ['url' => 'hotjar'                       , 'backend' => true, 'frontend' => true],
-            ['url' => 'tiktok'                       , 'backend' => true, 'frontend' => true],
-            ['url' => 'snap.licdn.com'               , 'backend' => true, 'frontend' => true],
-            ['url' => 'linkedin'                     , 'backend' => true, 'frontend' => true],
-            ['url' => 'matomo'                       , 'backend' => true, 'frontend' => true],
-            ['url' => 'plausible'                    , 'backend' => true, 'frontend' => true],
-            ['url' => 'umami'                        , 'backend' => true, 'frontend' => true],
-            ['url' => 'mixpanel'                     , 'backend' => true, 'frontend' => true],
-            ['url' => 'segment.com'                  , 'backend' => true, 'frontend' => true],
-            ['url' => 'sentry.io'                    , 'backend' => true, 'frontend' => true],
+            ['url' => 'yektanet', 'backend' => true, 'frontend' => true],
+            ['url' => 'cdn.yektanet.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'rg.complete.js', 'backend' => true, 'frontend' => true],
+            ['url' => 'tapsell', 'backend' => true, 'frontend' => true],
+            ['url' => 'adivery', 'backend' => true, 'frontend' => true],
+            ['url' => 'mediaad', 'backend' => true, 'frontend' => true],
+            ['url' => 'adtrace', 'backend' => true, 'frontend' => true],
+            ['url' => 'cafebazaar', 'backend' => true, 'frontend' => true],
+            ['url' => 'connect.facebook.net', 'backend' => true, 'frontend' => true],
+            ['url' => 'clarity.ms', 'backend' => true, 'frontend' => true],
+            ['url' => 'hotjar', 'backend' => true, 'frontend' => true],
+            ['url' => 'tiktok', 'backend' => true, 'frontend' => true],
+            ['url' => 'snap.licdn.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'linkedin', 'backend' => true, 'frontend' => true],
+            ['url' => 'matomo', 'backend' => true, 'frontend' => true],
+            ['url' => 'plausible', 'backend' => true, 'frontend' => true],
+            ['url' => 'umami', 'backend' => true, 'frontend' => true],
+            ['url' => 'mixpanel', 'backend' => true, 'frontend' => true],
+            ['url' => 'segment.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'sentry.io', 'backend' => true, 'frontend' => true],
+            ['url' => 'rtl-theme.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'zhaket', 'backend' => true, 'frontend' => true],
+            ['url' => 'gravatar.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'googleapis', 'backend' => true, 'frontend' => true],
+            ['url' => 'fonts.googleapis.com', 'backend' => true, 'frontend' => true],
+            ['url' => 'my.elementor.com', 'backend' => true, 'frontend' => true],
         );
-
+        private static $default_cdn_replacements = array(
+            ['pattern' => 'jquery.js',    'cdn' => 'https://lib.arvancloud.ir/jquery/3.6.3/jquery.js',                                    'backend' => false, 'frontend' => false],
+            ['pattern' => 'bootstrap',    'cdn' => 'https://lib.arvancloud.ir/bootstrap/5.3.0-alpha1/css/bootstrap-grid.css',              'backend' => false, 'frontend' => false],
+        );
         private static function icon($name, $color = 'currentColor', $size = 18) {
             $s = $size;
             $icons = array(
@@ -165,18 +178,30 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 'circle-pause'   => '<circle cx="12" cy="12" r="10"/><line x1="10" x2="10" y1="15" y2="9"/><line x1="14" x2="14" y1="15" y2="9"/>',
                 'circle-play'    => '<circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>',
                 'activity'       => '<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>',
+                'user'           => '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+                'repeat'         => '<path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
+                'rotate-ccw'     => '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
             );
             if (!isset($icons[$name])) return '';
             return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $s . '" height="' . $s . '" viewBox="0 0 24 24" fill="none" stroke="' . $color . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;flex-shrink:0;">' . $icons[$name] . '</svg>';
         }
-
         public function __construct() {
             $this->td      = "blackswan-block-external-request";
-            $this->version = "2.6.2";
+            $this->version = "2.6.7";
             load_plugin_textdomain($this->td, false, dirname(plugin_basename(__FILE__)) . "/languages/");
             $this->title = __("Block External Request", $this->td);
 
             $this->load_settings();
+
+            if (!empty($this->settings['disable_avatars'])) {
+                add_filter('pre_option_show_avatars', '__return_zero');
+                add_filter('get_avatar', '__return_empty_string');
+            }
+
+            if (!empty($this->settings['cdn_replacements'])) {
+                add_filter('script_loader_src', array($this, 'replace_cdn_resource'), 10, 1);
+                add_filter('style_loader_src',  array($this, 'replace_cdn_resource'), 10, 1);
+            }
 
             $this->block_url_list = apply_filters("BlackSwan\block_external_request\block_url_list", $this->settings['blacklist']);
             $this->whitelist_urls = apply_filters("BlackSwan\block_external_request\whitelist_urls", $this->settings['whitelist']);
@@ -207,17 +232,16 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 add_action("admin_menu", array($this, "add_admin_menu"));
                 add_action("wp_ajax_bswan_ber_save", array($this, "ajax_save_settings"));
                 add_action("wp_ajax_bswan_ber_toggle_pause", array($this, "ajax_toggle_pause"));
+                add_action("wp_ajax_bswan_ber_reset", array($this, "ajax_reset_settings"));
                 add_filter("plugin_action_links_" . plugin_basename(__FILE__), array($this, "plugin_action_links"));
             }
         }
-
         private function is_safe_mode() {
             if (!is_admin()) return false;
             return (isset($_GET['bswan-safe']) && $_GET['bswan-safe'] === '1');
         }
-
         private function load_settings() {
-            $defaults = array('blacklist' => self::$default_blacklist, 'whitelist' => self::$default_whitelist, 'paused' => false, 'block_resources_backend' => false, 'block_resources_frontend' => false, 'blocked_resources' => self::$default_resources);
+            $defaults = array('blacklist' => self::$default_blacklist, 'whitelist' => self::$default_whitelist, 'paused' => false, 'block_resources_backend' => false, 'block_resources_frontend' => false, 'blocked_resources' => self::$default_resources, 'disable_avatars' => true, 'cdn_replacements' => self::$default_cdn_replacements);
             $raw = get_option($this->option_key, false);
             if ($raw === false) {
                 $this->settings = $defaults;
@@ -227,21 +251,17 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 $this->settings = is_array($decoded) ? array_merge($defaults, $decoded) : $defaults;
             }
         }
-
         private function save_settings() {
             update_option($this->option_key, wp_json_encode($this->settings), 'no');
         }
-
         public function plugin_action_links($links) {
             $url = admin_url('options-general.php?page=bswan-ber-settings');
             array_unshift($links, '<a href="' . esc_url($url) . '">' . __('Settings', $this->td) . '</a>');
             return $links;
         }
-
         public function add_admin_menu() {
             add_options_page(sprintf('%s — %s', $this->title, __('Settings', $this->td)), $this->title, 'manage_options', 'bswan-ber-settings', array($this, 'render_settings_page'));
         }
-
         public function ajax_save_settings() {
             check_ajax_referer('bswan_ber_nonce', '_nonce');
             if (!current_user_can('manage_options')) wp_send_json_error(__('Permission denied.', $this->td));
@@ -249,6 +269,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             $this->settings['whitelist'] = array_values(array_unique(array_filter(array_map('sanitize_text_field', (array)(isset($_POST['whitelist']) ? $_POST['whitelist'] : array())))));
             $this->settings['block_resources_backend']  = !empty($_POST['block_resources_backend']);
             $this->settings['block_resources_frontend'] = !empty($_POST['block_resources_frontend']);
+            $this->settings['disable_avatars']          = !empty($_POST['disable_avatars']);
             $blocked_resources = array();
             if (!empty($_POST['blocked_resources']) && is_array($_POST['blocked_resources'])) {
                 foreach ($_POST['blocked_resources'] as $item) {
@@ -258,10 +279,19 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 }
             }
             $this->settings['blocked_resources'] = $blocked_resources;
+            $cdn_replacements = array();
+            if (!empty($_POST['cdn_replacements']) && is_array($_POST['cdn_replacements'])) {
+                foreach ($_POST['cdn_replacements'] as $item) {
+                    $pattern = sanitize_text_field(isset($item['pattern']) ? $item['pattern'] : '');
+                    $cdn     = esc_url_raw(isset($item['cdn']) ? $item['cdn'] : '');
+                    if (empty($pattern) || empty($cdn)) continue;
+                    $cdn_replacements[] = array('pattern' => $pattern, 'cdn' => $cdn, 'backend' => !empty($item['backend']), 'frontend' => !empty($item['frontend']));
+                }
+            }
+            $this->settings['cdn_replacements'] = $cdn_replacements;
             $this->save_settings();
             wp_send_json_success(__('Settings saved successfully.', $this->td));
         }
-
         public function ajax_toggle_pause() {
             check_ajax_referer('bswan_ber_nonce', '_nonce');
             if (!current_user_can('manage_options')) wp_send_json_error(__('Permission denied.', $this->td));
@@ -269,7 +299,16 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             $this->save_settings();
             wp_send_json_success(array('paused' => $this->settings['paused'], 'message' => $this->settings['paused'] ? __('Plugin is now paused. All blocking is disabled.', $this->td) : __('Plugin is now active. Blocking rules are enforced.', $this->td)));
         }
-
+        public function ajax_reset_settings() {
+            check_ajax_referer('bswan_ber_nonce', '_nonce');
+            if (!current_user_can('manage_options')) {
+                wp_send_json_error(__('Permission denied.', $this->td));
+                return;
+            }
+            delete_option($this->option_key);
+            $this->load_settings();
+            wp_send_json_success(__('All settings have been reset to defaults.', $this->td));
+        }
         public function block_external_request($preempt, $parsed_args, $url) {
             foreach ($this->block_url_list as $bu) {
                 if (strpos($url, $bu) !== false) {
@@ -281,12 +320,10 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             }
             return $preempt;
         }
-
         public function dequeue_blocked_resources() {
             $this->dequeue_by_domain('scripts');
             $this->dequeue_by_domain('styles');
         }
-
         private function dequeue_by_domain($type) {
             global $wp_scripts, $wp_styles;
             $reg = ($type === 'scripts') ? $wp_scripts : $wp_styles;
@@ -320,7 +357,6 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 }
             }
         }
-
         public function dequeue_specific_resources() {
             $ia = is_admin();
             $bl = !empty($this->settings['blocked_resources']) ? $this->settings['blocked_resources'] : array();
@@ -335,7 +371,6 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             $this->dequeue_specific_by_type('scripts', $act);
             $this->dequeue_specific_by_type('styles', $act);
         }
-
         private function dequeue_specific_by_type($type, $patterns) {
             global $wp_scripts, $wp_styles;
             $reg = ($type === 'scripts') ? $wp_scripts : $wp_styles;
@@ -351,20 +386,53 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 }
             }
         }
-
+        public function replace_cdn_resource($src) {
+            $replacements = apply_filters("BlackSwan\block_external_request\cdn_replacements", !empty($this->settings['cdn_replacements']) ? $this->settings['cdn_replacements'] : array());
+            if (empty($replacements)) return $src;
+            $ia = is_admin();
+            foreach ($replacements as $r) {
+                if (empty($r['pattern']) || empty($r['cdn'])) continue;
+                if ($ia && empty($r['backend']))  continue;
+                if (!$ia && empty($r['frontend'])) continue;
+                if (strpos($src, $r['pattern']) !== false) {
+                    return esc_url_raw($r['cdn']);
+                }
+            }
+            return $src;
+        }
         // ─────────────────────────────────────────────
         // SETTINGS PAGE
         // ─────────────────────────────────────────────
         public function render_settings_page() {
             wp_enqueue_script('postbox');
-
+            wp_enqueue_style($this->td, plugins_url("assets/admin-style.css", __FILE__), [], current_time("timestamp"), "all");
             $is_paused        = !empty($this->settings['paused']);
             $is_safe          = $this->is_safe_mode();
             $res_backend      = !empty($this->settings['block_resources_backend']);
             $res_frontend     = !empty($this->settings['block_resources_frontend']);
+            $disable_avatars  = !empty($this->settings['disable_avatars']);
+            $br_list      = !empty($this->settings['blocked_resources']) ? $this->settings['blocked_resources'] : array();
+            $cdn_list     = !empty($this->settings['cdn_replacements'])  ? $this->settings['cdn_replacements']  : array();
+            $bl_count     = count($this->settings['blacklist']);
+            $wl_count     = count($this->settings['whitelist']);
+            $br_count     = count($br_list);
+            $br_be_count  = count(array_filter($br_list,  function ($r) {
+                return !empty($r['backend']);
+            }));
+            $br_fe_count  = count(array_filter($br_list,  function ($r) {
+                return !empty($r['frontend']);
+            }));
+            $cdn_count    = count($cdn_list);
+            $cdn_be_count = count(array_filter($cdn_list, function ($r) {
+                return !empty($r['backend']);
+            }));
+            $cdn_fe_count = count(array_filter($cdn_list, function ($r) {
+                return !empty($r['frontend']);
+            }));
             $blacklist_json   = wp_json_encode(array_values($this->settings['blacklist']));
             $whitelist_json   = wp_json_encode(array_values($this->settings['whitelist']));
-            $blocked_res_json = wp_json_encode(array_values(!empty($this->settings['blocked_resources']) ? $this->settings['blocked_resources'] : array()));
+            $blocked_res_json    = wp_json_encode(array_values(!empty($this->settings['blocked_resources']) ? $this->settings['blocked_resources'] : array()));
+            $cdn_replace_json    = wp_json_encode(array_values(!empty($this->settings['cdn_replacements']) ? $this->settings['cdn_replacements'] : array()));
             $nonce            = wp_create_nonce('bswan_ber_nonce');
             $ajax_url         = admin_url('admin-ajax.php');
             $qm_active        = is_plugin_active('query-monitor/query-monitor.php');
@@ -391,12 +459,15 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 'cpause'   => self::icon('circle-pause', '#dba617', 16),
                 'cplay'    => self::icon('circle-play', '#00a32a', 16),
                 'activity' => self::icon('activity', '#00a32a', 16),
+                'user'     => self::icon('user', '#826eb4'),
+                'repeat'   => self::icon('repeat', '#826eb4'),
+                'reset'    => self::icon('rotate-ccw', '#d63638'),
             );
 
             add_filter("admin_footer_text", function () {
                 return sprintf(__('Developed by %s — Another Free & Open-source project by %s', $this->td), '<a href="https://amirhp.com/" target="_blank">AmirhpCom</a>', '<a href="https://blackswandev.com/" target="_blank">BlackSwan</a>');
             }, 9999);
-?>
+            ?>
             <div class="wrap bswan-wrap">
                 <h1 class="bswan-title"><?php echo esc_html__("BlackSwan - Block External Request", $this->td); ?> <sup><?php echo esc_html($this->version); ?></sup></h1>
 
@@ -404,631 +475,417 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                     <div class="bswan-notice bswan-notice-info"><?php echo $i['shldchk']; ?> <strong><?php _e('Safe Mode is active.', $this->td); ?></strong> <?php _e('All blocking rules are temporarily bypassed on this page load.', $this->td); ?></div>
                 <?php endif; ?>
 
-                <div id="poststuff">
-                    <div id="post-body" class="metabox-holder columns-2">
-                        <div id="post-body-content">
-
-                            <!-- Section 1 -->
-                            <div id="bswan-section-http" class="postbox bswan-glass">
-                                <div class="postbox-header">
-                                    <h2 class="hndle"><?php echo $i['cloud']; ?> <span><?php _e('Server-side HTTP Requests (PHP)', $this->td); ?></span></h2>
-                                    <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
-                                </div>
-                                <div class="inside">
-                                    <p class="description"><?php _e('Background requests made by WordPress, plugins, and themes via PHP (e.g. update checks, license verification, REST API calls). They happen on the server and are invisible to the browser.', $this->td); ?></p>
-                                    <div id="bswan-columns">
-
-                                        <div class="bswan-card">
-                                            <div class="bswan-card-header">
-                                                <h3><?php echo $i['shield']; ?> <?php _e('Blacklist (Blocked Domains)', $this->td); ?></h3>
-                                                <span class="bswan-count-bl bswan-badge bswan-badge-red">0</span>
-                                            </div>
-                                            <div class="bswan-card-body">
-                                                <div class="bswan-input-row">
-                                                    <input type="text" id="bswan-bl-input" class="regular-text" placeholder="<?php esc_attr_e('e.g. example.com', $this->td); ?>">
-                                                    <button type="button" class="button button-primary" onclick="bswanAddItem('bl')"><?php _e('Add', $this->td); ?></button>
-                                                </div>
-                                                <div class="bswan-table-scroll">
-                                                    <table class="widefat striped" id="bswan-bl-table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th><?php _e('Domain / URL Pattern', $this->td); ?></th>
-                                                                <th style="width:90px;text-align:right;"><?php _e('Actions', $this->td); ?></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody></tbody>
-                                                    </table>
-                                                </div>
-                                                <div><button type="button" class="button bswan-btn-danger" onclick="bswanDeleteAll('bl')"><?php echo $i['trash']; ?> <?php _e('Delete All', $this->td); ?></button></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="bswan-card">
-                                            <div class="bswan-card-header">
-                                                <h3><?php echo $i['circhk']; ?> <?php _e('Whitelist (Allowed URL Patterns)', $this->td); ?></h3>
-                                                <span class="bswan-count-wl bswan-badge bswan-badge-green">0</span>
-                                            </div>
-                                            <div class="bswan-card-body">
-                                                <div class="bswan-input-row">
-                                                    <input type="text" id="bswan-wl-input" class="regular-text" placeholder="<?php esc_attr_e('e.g. //api.wordpress.org/plugins/', $this->td); ?>">
-                                                    <button type="button" class="button button-primary" onclick="bswanAddItem('wl')"><?php _e('Add', $this->td); ?></button>
-                                                </div>
-                                                <div class="bswan-table-scroll">
-                                                    <table class="widefat striped" id="bswan-wl-table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th><?php _e('URL Pattern (whitelisted)', $this->td); ?></th>
-                                                                <th style="width:90px;text-align:right;"><?php _e('Actions', $this->td); ?></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody></tbody>
-                                                    </table>
-                                                </div>
-                                                <div><button type="button" class="button bswan-btn-danger" onclick="bswanDeleteAll('wl')"><?php echo $i['trash']; ?> <?php _e('Delete All', $this->td); ?></button></div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Section 2 -->
-                            <div id="bswan-section-domain" class="postbox bswan-glass">
-                                <div class="postbox-header">
-                                    <h2 class="hndle"><?php echo $i['globe']; ?> <span><?php _e('Browser-side Resources by Domain (JS / CSS)', $this->td); ?></span></h2>
-                                    <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
-                                </div>
-                                <div class="inside">
-                                    <p class="description"><?php _e('When enabled, enqueued JS/CSS from blacklisted domains will be deregistered. Only external resources are affected. Whitelisted patterns are respected.', $this->td); ?></p>
-                                    <fieldset class="bswan-checkbox-row">
-
-                                        <div class="checkbox-wrapper">
-                                            <input type="checkbox" class="switch" id="bswan-res-backend" <?php checked($res_backend); ?> />
-                                            <label for="bswan-res-backend"><span class="switch-x-text"><?php echo $i['gear']; ?><?php _e('Admin Panel (wp-admin)', $this->td); ?></span><span class="switch-x-toggletext"><span class="switch-x-unchecked">Off</span><span class="switch-x-checked">On</span></span></label>
-                                        </div>
-
-                                        <div class="checkbox-wrapper">
-                                            <input type="checkbox" class="switch" id="bswan-res-frontend" <?php checked($res_frontend); ?> />
-                                            <label for="bswan-res-frontend"><span class="switch-x-text"><?php echo $i['monitor']; ?><?php _e('Public Frontend', $this->td); ?></span><span class="switch-x-toggletext"><span class="switch-x-unchecked">Off</span><span class="switch-x-checked">On</span></span></label>
-                                        </div>
-
-                                    </fieldset>
-                                </div>
-                            </div>
-
-                            <!-- Section 3 -->
-                            <div id="bswan-section-specific" class="postbox bswan-glass">
-                                <div class="postbox-header">
-                                    <h2 class="hndle"><?php echo $i['ban']; ?> <span><?php _e('Block Specific Resources (by URL)', $this->td); ?></span></h2>
-                                    <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
-                                </div>
-                                <div class="inside">
-                                    <p class="description"><?php _e('Block individual JS or CSS files by matching against their enqueued URL. Full URL, partial path, or even just a filename with extension — anything that appears in the resource URL will match. Works for both local and external resources.', $this->td); ?></p>
-                                    <p class="description" style="margin-top:4px;"><?php printf(__('Examples: %s · %s · %s', $this->td), '<code>/persian-woocommerce/assets/fonts/admin-font.css</code>', '<code>admin-font.css</code>', '<code>https://cdn.example.com/lib.js</code>'); ?></p>
-                                    <div class="bswan-input-row" style="margin:10px 0 8px;">
-                                        <input type="text" id="bswan-br-input" class="regular-text" placeholder="<?php esc_attr_e('Full URL, partial path, or filename.ext', $this->td); ?>">
-
-                                        <div class="checkbox-wrapper">
-                                            <input type="checkbox" class="switch" id="bswan-br-backend" checked>
-                                            <label for="bswan-br-backend"><span class="switch-x-text"><?php _e('Backend', $this->td); ?></span></label>
-                                        </div>
-
-                                        <div class="checkbox-wrapper">
-                                            <input type="checkbox" class="switch" id="bswan-br-frontend">
-                                            <label for="bswan-br-frontend"><span class="switch-x-text"><?php _e('Frontend', $this->td); ?></span></label>
-                                        </div>
-
-                                        <button type="button" class="button button-primary" onclick="bswanAddResource()"><?php _e('Add', $this->td); ?></button>
-                                    </div>
-                                    <div class="bswan-table-scroll">
-                                        <table class="widefat striped" id="bswan-br-table">
-                                            <thead>
-                                                <tr>
-                                                    <th><?php _e('URL Pattern', $this->td); ?></th>
-                                                    <th><?php _e('Conditions', $this->td); ?></th>
-                                                    <th style="width:90px;text-align:right;"><?php _e('Actions', $this->td); ?></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
-                                    </div>
-                                    <div style="margin-top:8px;"><button type="button" class="button bswan-btn-danger" onclick="bswanDeleteAllRes()"><?php echo $i['trash']; ?> <?php _e('Delete All', $this->td); ?></button></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- ════════════ SIDEBAR ════════════ -->
-                        <div id="postbox-container-1" class="postbox-container">
-
-                            <div class="postbox bswan-glass">
-                                <div class="postbox-header">
-                                    <h2 class="hndle"><span><?php _e('Actions', $this->td); ?></span></h2>
-                                </div>
-                                <div class="inside">
-                                    <button type="button" id="bswan-save-btn" class="button button-primary button-large bswan-full-btn"><?php echo $i['save']; ?> <?php _e('Save All Settings', $this->td); ?></button>
-                                    <span id="bswan-save-msg" class="bswan-msg"></span>
-                                    <hr style="margin:10px 0;">
-                                    <div class="bswan-pause-row">
-                                        <button type="button" id="bswan-pause-btn" class="button <?php echo $is_paused ? 'button-primary' : ''; ?> bswan-full-btn">
-                                            <span class="bswan-pause-icon"><?php echo $is_paused ? $i['play'] : $i['pause']; ?></span>
-                                            <span class="bswan-pause-label"><?php echo $is_paused ? __('Resume', $this->td) : __('Pause', $this->td); ?></span>
-                                        </button>
-                                    </div>
-                                    <div id="bswan-status-badge" class="bswan-status <?php echo $is_paused ? 'bswan-status-paused' : 'bswan-status-active'; ?>">
-                                        <span class="bswan-status-icon"><?php echo $is_paused ? $i['cpause'] : $i['activity']; ?></span>
-                                        <span class="bswan-status-text"><?php echo $is_paused ? __('Paused — all blocking disabled', $this->td) : __('Active — blocking rules enforced', $this->td); ?></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="postbox bswan-glass" style="border-left:3px solid rgba(34,113,177,0.6);">
-                                <div class="postbox-header">
-                                    <h2 class="hndle"><span><?php _e('Safe Mode', $this->td); ?></span></h2>
-                                </div>
-                                <div class="inside">
-                                    <p class="description" style="margin:0 0 8px;"><?php _e('Temporarily disable <strong>all</strong> blocking for a page load. Resource dequeuing is already skipped on this settings page — safe mode is for other broken admin pages.', $this->td); ?></p>
-                                    <a href="<?php echo esc_url($safe_mode_url); ?>" class="button bswan-full-btn"><?php echo $i['shldchk']; ?> <?php _e('Open in Safe Mode', $this->td); ?></a>
-                                    <p class="description" style="margin:8px 0 0;opacity:0.7;"><?php _e('Tip: Add <code>&bswan-safe=1</code> to any admin URL.', $this->td); ?></p>
-                                </div>
-                            </div>
-
-                            <div class="postbox bswan-glass">
-                                <div class="postbox-header">
-                                    <h2 class="hndle"><span><?php _e('Tools', $this->td); ?></span></h2>
-                                </div>
-                                <div class="inside">
-                                    <?php if ($qm_active): ?>
-                                        <p class="description" style="display:flex;align-items:center;gap:6px;"><?php echo $i['check']; ?> <?php _e('Query Monitor is active.', $this->td); ?></p>
-                                    <?php elseif ($qm_installed): ?>
-                                        <a href="<?php echo esc_url($qm_url); ?>" class="button bswan-full-btn" style="margin-bottom:6px;"><?php echo $i['play']; ?> <?php _e('Activate Query Monitor', $this->td); ?></a>
-                                        <p class="description"><?php _e('Installed but not active. Activate to inspect HTTP requests and enqueued resources.', $this->td); ?></p>
-                                    <?php else: ?>
-                                        <a href="<?php echo esc_url($qm_url); ?>" class="button bswan-full-btn" style="margin-bottom:6px;"><?php echo $i['search']; ?> <?php _e('Install Query Monitor', $this->td); ?></a>
-                                        <p class="description"><?php _e('See every HTTP request and enqueued resource. Highly recommended.', $this->td); ?></p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-
-                            <div class="postbox bswan-glass">
-                                <div class="postbox-header">
-                                    <h2 class="hndle"><span><?php _e('Export / Import', $this->td); ?></span></h2>
-                                </div>
-                                <div class="inside">
-                                    <p class="description" style="margin:0 0 8px;"><?php _e('All plugin settings as a single JSON file.', $this->td); ?></p>
-                                    <button type="button" id="bswan-export-all" class="button bswan-full-btn" style="margin-bottom:6px;"><?php echo $i['download']; ?> <?php _e('Export All Settings', $this->td); ?></button>
-                                    <button type="button" id="bswan-import-all-btn" class="button bswan-full-btn"><?php echo $i['upload']; ?> <?php _e('Import Settings', $this->td); ?></button>
-                                    <input type="file" id="bswan-import-all" accept=".json" style="display:none;">
-                                    <span id="bswan-import-msg" class="bswan-msg"></span>
-                                </div>
-                            </div>
-
-                            <div class="postbox bswan-glass bswan-status-paused" style="border-left:3px solid rgba(219,166,23,0.6);">
-                                <div class="postbox-header">
-                                    <h2 class="hndle"><span><?php _e('Disclaimer', $this->td); ?></span></h2>
-                                </div>
-                                <div class="inside">
-                                    <p class="description" style="margin:0;"><?php _e('This plugin blocks outgoing HTTP requests and browser resources. May prevent updates, license checks, fonts, CDN libraries, etc. Use at your own risk. Always maintain backups.', $this->td); ?></p>
-                                </div>
-                            </div>
-
+                <!-- ── Overview ── -->
+                <div id="bswan-overview">
+                    <div class="bswan-ov-status <?php echo $is_paused ? 'bswan-status-paused' : 'bswan-status-active'; ?>">
+                        <span><?php echo $is_paused ? $i['cpause'] : $i['activity']; ?></span>
+                        <div>
+                            <strong><?php echo $is_paused ? esc_html__('Plugin is Paused', $this->td) : esc_html__('Plugin is Active', $this->td); ?></strong>
+                            <?php echo $is_paused ? esc_html__('All blocking is temporarily suspended — no requests or resources are being filtered.', $this->td) : esc_html__('All configured rules are actively enforced on this site.', $this->td); ?>
                         </div>
                     </div>
+
+                    <div class="bswan-ov-grid">
+
+                        <div class="bswan-ov-card">
+                            <div class="bswan-ov-card-icon" style="background:rgba(34,113,177,.1);"><?php echo self::icon('cloud', '#2271b1', 20); ?></div>
+                            <div class="bswan-ov-card-body">
+                                <div class="bswan-ov-card-title"><?php esc_html_e('HTTP Request Blocking', $this->td); ?></div>
+                                <?php if ($bl_count === 0): ?>
+                                    <div class="bswan-ov-card-value bswan-ov-dim"><?php esc_html_e('No domains configured', $this->td); ?></div>
+                                <?php else: ?>
+                                    <div class="bswan-ov-card-value"><?php echo esc_html(sprintf(_n('%d domain blocked', '%d domains blocked', $bl_count, $this->td), $bl_count)); ?></div>
+                                <?php endif; ?>
+                                <div class="bswan-ov-card-detail"><?php echo $wl_count > 0 ? esc_html(sprintf(_n('%d domain always allowed', '%d domains always allowed', $wl_count, $this->td), $wl_count)) : esc_html__('No whitelist exceptions', $this->td); ?></div>
+                            </div>
+                        </div>
+
+                        <div class="bswan-ov-card">
+                            <div class="bswan-ov-card-icon" style="background:rgba(130,110,180,.1);"><?php echo self::icon('globe', '#826eb4', 20); ?></div>
+                            <div class="bswan-ov-card-body">
+                                <div class="bswan-ov-card-title"><?php esc_html_e('Script & Style Blocking', $this->td); ?></div>
+                                <?php if (!$res_backend && !$res_frontend): ?>
+                                    <div class="bswan-ov-card-value bswan-ov-dim"><?php esc_html_e('Off', $this->td); ?></div>
+                                    <div class="bswan-ov-card-detail"><?php esc_html_e('Not blocking external scripts or styles', $this->td); ?></div>
+                                <?php else: ?>
+                                    <div class="bswan-ov-card-value bswan-ov-on"><?php esc_html_e('On', $this->td); ?></div>
+                                    <div class="bswan-ov-card-detail"><?php echo esc_html(implode(' · ', array_filter(array($res_backend ? __('Admin panel', $this->td) : '', $res_frontend ? __('Website', $this->td) : '')))); ?></div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                        <div class="bswan-ov-card">
+                            <div class="bswan-ov-card-icon" style="background:rgba(219,166,23,.1);"><?php echo self::icon('ban', '#dba617', 20); ?></div>
+                            <div class="bswan-ov-card-body">
+                                <div class="bswan-ov-card-title"><?php esc_html_e('Specific Resource Blocking', $this->td); ?></div>
+                                <?php if ($br_count === 0): ?>
+                                    <div class="bswan-ov-card-value bswan-ov-dim"><?php esc_html_e('None configured', $this->td); ?></div>
+                                    <div class="bswan-ov-card-detail"><?php esc_html_e('No individual JS/CSS rules set up', $this->td); ?></div>
+                                <?php else: ?>
+                                    <div class="bswan-ov-card-value"><?php echo esc_html(sprintf(_n('%d rule', '%d rules', $br_count, $this->td), $br_count)); ?></div>
+                                    <div class="bswan-ov-card-detail"><?php echo esc_html(sprintf(__('Admin: %d · Website: %d', $this->td), $br_be_count, $br_fe_count)); ?></div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                        <div class="bswan-ov-card">
+                            <div class="bswan-ov-card-icon" style="background:rgba(130,110,180,.1);"><?php echo self::icon('repeat', '#826eb4', 20); ?></div>
+                            <div class="bswan-ov-card-body">
+                                <div class="bswan-ov-card-title"><?php esc_html_e('CDN Replacements', $this->td); ?></div>
+                                <?php if ($cdn_count === 0 || ($cdn_be_count === 0 && $cdn_fe_count === 0)): ?>
+                                    <div class="bswan-ov-card-value bswan-ov-dim"><?php echo $cdn_count === 0 ? esc_html__('None configured', $this->td) : esc_html(sprintf(_n('%d rule (none active)', '%d rules (none active)', $cdn_count, $this->td), $cdn_count)); ?></div>
+                                    <div class="bswan-ov-card-detail"><?php esc_html_e('Resources load from their original source', $this->td); ?></div>
+                                <?php else: ?>
+                                    <div class="bswan-ov-card-value bswan-ov-on"><?php echo esc_html(sprintf(_n('%d rule active', '%d rules active', max($cdn_be_count, $cdn_fe_count), $this->td), max($cdn_be_count, $cdn_fe_count))); ?></div>
+                                    <div class="bswan-ov-card-detail"><?php echo esc_html(sprintf(__('Admin: %d · Website: %d', $this->td), $cdn_be_count, $cdn_fe_count)); ?></div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                        <div class="bswan-ov-card">
+                            <div class="bswan-ov-card-icon" style="background:<?php echo $disable_avatars ? 'rgba(0,163,42,.1)' : 'rgba(130,110,180,.08)'; ?>;"><?php echo self::icon('user', $disable_avatars ? '#00a32a' : '#826eb4', 20); ?></div>
+                            <div class="bswan-ov-card-body">
+                                <div class="bswan-ov-card-title"><?php esc_html_e('User Avatars', $this->td); ?></div>
+                                <?php if ($disable_avatars): ?>
+                                    <div class="bswan-ov-card-value bswan-ov-on"><?php esc_html_e('Avatars disabled', $this->td); ?></div>
+                                    <div class="bswan-ov-card-detail"><?php esc_html_e('No Gravatar requests — faster & more private', $this->td); ?></div>
+                                <?php else: ?>
+                                    <div class="bswan-ov-card-value bswan-ov-dim"><?php esc_html_e('Avatars shown', $this->td); ?></div>
+                                    <div class="bswan-ov-card-detail"><?php esc_html_e('WordPress loads Gravatars normally', $this->td); ?></div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+
+                <div class="bswan-advanced-row">
+                    <button type="button" id="bswan-advanced-toggle" class="button bswan-advanced-btn">
+                        <?php echo self::icon('settings', 'currentColor', 15); ?>
+                        <span><?php esc_html_e('Configure &amp; Advanced Settings', $this->td); ?></span>
+                        <span id="bswan-advanced-arrow" class="bswan-advanced-arrow">&#9660;</span>
+                    </button>
+                </div>
+
+                <div id="bswan-advanced-wrap">
+                    <div id="poststuff">
+                        <div id="post-body" class="metabox-holder columns-2">
+                            <div id="post-body-content">
+
+                                <!-- Section 1 -->
+                                <div id="bswan-section-http" class="postbox bswan-glass closed">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><?php echo $i['cloud']; ?> <span><?php _e('Server-side HTTP Requests (PHP)', $this->td); ?></span></h2>
+                                        <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
+                                    </div>
+                                    <div class="inside">
+                                        <p class="description"><?php _e('Background requests made by WordPress, plugins, and themes via PHP (e.g. update checks, license verification, REST API calls). They happen on the server and are invisible to the browser.', $this->td); ?></p>
+                                        <div id="bswan-columns">
+
+                                            <div class="bswan-card">
+                                                <div class="bswan-card-header">
+                                                    <h3><?php echo $i['shield']; ?> <?php _e('Blacklist (Blocked Domains)', $this->td); ?></h3>
+                                                    <span class="bswan-count-bl bswan-badge bswan-badge-red">0</span>
+                                                </div>
+                                                <div class="bswan-card-body">
+                                                    <div class="bswan-input-row">
+                                                        <input type="text" id="bswan-bl-input" class="regular-text" placeholder="<?php esc_attr_e('e.g. example.com', $this->td); ?>">
+                                                        <button type="button" class="button button-primary" onclick="bswanAddItem('bl')"><?php _e('Add', $this->td); ?></button>
+                                                    </div>
+                                                    <div class="bswan-table-scroll">
+                                                        <table class="widefat striped" id="bswan-bl-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th><?php _e('Domain / URL Pattern', $this->td); ?></th>
+                                                                    <th style="width:65px;text-align:end;"><?php _e('Actions', $this->td); ?></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div><button type="button" class="button bswan-btn-danger" onclick="bswanDeleteAll('bl')"><?php echo $i['trash']; ?> <?php _e('Delete All', $this->td); ?></button></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="bswan-card">
+                                                <div class="bswan-card-header">
+                                                    <h3><?php echo $i['circhk']; ?> <?php _e('Whitelist (Allowed URL Patterns)', $this->td); ?></h3>
+                                                    <span class="bswan-count-wl bswan-badge bswan-badge-green">0</span>
+                                                </div>
+                                                <div class="bswan-card-body">
+                                                    <div class="bswan-input-row">
+                                                        <input type="text" id="bswan-wl-input" class="regular-text" placeholder="<?php esc_attr_e('e.g. //api.wordpress.org/plugins/', $this->td); ?>">
+                                                        <button type="button" class="button button-primary" onclick="bswanAddItem('wl')"><?php _e('Add', $this->td); ?></button>
+                                                    </div>
+                                                    <div class="bswan-table-scroll">
+                                                        <table class="widefat striped" id="bswan-wl-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th><?php _e('URL Pattern (whitelisted)', $this->td); ?></th>
+                                                                    <th style="width:65px;text-align:end;"><?php _e('Actions', $this->td); ?></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div><button type="button" class="button bswan-btn-danger" onclick="bswanDeleteAll('wl')"><?php echo $i['trash']; ?> <?php _e('Delete All', $this->td); ?></button></div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Section 2 -->
+                                <div id="bswan-section-domain" class="postbox bswan-glass closed">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><?php echo $i['globe']; ?> <span><?php _e('Browser-side Resources by Domain (JS / CSS)', $this->td); ?></span></h2>
+                                        <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
+                                    </div>
+                                    <div class="inside">
+                                        <p class="description"><?php _e('When enabled, enqueued JS/CSS from blacklisted domains will be deregistered. Only external resources are affected. Whitelisted patterns are respected.', $this->td); ?></p>
+                                        <fieldset class="bswan-checkbox-row">
+
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" class="switch" id="bswan-res-backend" <?php checked($res_backend); ?> />
+                                                <label for="bswan-res-backend"><span class="switch-x-text"><?php echo $i['gear']; ?><?php _e('Admin Panel (wp-admin)', $this->td); ?></span><span class="switch-x-toggletext"><span class="switch-x-unchecked">Off</span><span class="switch-x-checked">On</span></span></label>
+                                            </div>
+
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" class="switch" id="bswan-res-frontend" <?php checked($res_frontend); ?> />
+                                                <label for="bswan-res-frontend"><span class="switch-x-text"><?php echo $i['monitor']; ?><?php _e('Public Frontend', $this->td); ?></span><span class="switch-x-toggletext"><span class="switch-x-unchecked">Off</span><span class="switch-x-checked">On</span></span></label>
+                                            </div>
+
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <!-- Section 3 -->
+                                <div id="bswan-section-avatars" class="postbox bswan-glass closed">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><?php echo $i['user']; ?> <span><?php _e('Avatars', $this->td); ?></span></h2>
+                                        <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
+                                    </div>
+                                    <div class="inside">
+                                        <p class="description"><?php _e('Control WordPress avatar display. When disabled, all avatars (Gravatar and local) are hidden site-wide — preventing outgoing requests to gravatar.com and removing avatar markup from comments, profiles, and admin areas.', $this->td); ?></p>
+                                        <fieldset class="bswan-checkbox-row" style="margin-top:10px;">
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" class="switch" id="bswan-disable-avatars" <?php checked($disable_avatars); ?> />
+                                                <label for="bswan-disable-avatars"><span class="switch-x-text"><?php echo $i['user']; ?><?php _e('Disable All Avatars', $this->td); ?></span><span class="switch-x-toggletext"><span class="switch-x-unchecked">Off</span><span class="switch-x-checked">On</span></span></label>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <!-- Section 4 -->
+                                <div id="bswan-section-specific" class="postbox bswan-glass closed">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><?php echo $i['ban']; ?> <span><?php _e('Block Specific Resources (by URL)', $this->td); ?></span></h2>
+                                        <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
+                                    </div>
+                                    <div class="inside">
+                                        <p class="description"><?php _e('Block individual JS or CSS files by matching against their enqueued URL. Full URL, partial path, or even just a filename with extension — anything that appears in the resource URL will match. Works for both local and external resources.', $this->td); ?></p>
+                                        <p class="description" style="margin-top:4px;"><?php printf(__('Examples: %s · %s · %s', $this->td), '<code>/persian-woocommerce/assets/fonts/admin-font.css</code>', '<code>admin-font.css</code>', '<code>https://cdn.example.com/lib.js</code>'); ?></p>
+                                        <div class="bswan-input-row bg-round" style="margin: 12px 0;gap: 12px;">
+                                            <input type="text" id="bswan-br-input" class="regular-text" placeholder="<?php esc_attr_e('Full URL, partial path, or filename.ext', $this->td); ?>">
+
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" class="switch" id="bswan-br-backend" checked>
+                                                <label for="bswan-br-backend"><span class="switch-x-text"><?php _e('Backend', $this->td); ?></span></label>
+                                            </div>
+
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" class="switch" id="bswan-br-frontend">
+                                                <label for="bswan-br-frontend"><span class="switch-x-text"><?php _e('Frontend', $this->td); ?></span></label>
+                                            </div>
+
+                                            <button type="button" style="min-width: 100px;" class="button button-primary" onclick="bswanAddResource()"><?php _e('Add', $this->td); ?></button>
+                                        </div>
+                                        <div class="bswan-table-scroll">
+                                            <table class="widefat striped" id="bswan-br-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th><?php _e('URL Pattern', $this->td); ?></th>
+                                                        <th><?php _e('Conditions', $this->td); ?></th>
+                                                        <th style="width:65px;text-align:end;"><?php _e('Actions', $this->td); ?></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                        <div style="margin-top:8px;"><button type="button" class="button bswan-btn-danger" onclick="bswanDeleteAllRes()"><?php echo $i['trash']; ?> <?php _e('Delete All', $this->td); ?></button></div>
+                                    </div>
+                                </div>
+
+                                <!-- Section 5 -->
+                                <div id="bswan-section-cdn" class="postbox bswan-glass closed">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><?php echo $i['repeat']; ?> <span><?php _e('CDN Resource Replacements (JS / CSS)', $this->td); ?></span></h2>
+                                        <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
+                                    </div>
+                                    <div class="inside">
+                                        <p class="description"><?php _e('Replace enqueued JS or CSS resources with versions served from a CDN. Any enqueued resource whose URL contains the pattern will have its source swapped for the CDN URL. Useful for serving popular libraries from a local or faster CDN — for example:', $this->td); ?> <i><a href="https://lib.arvancloud.ir/" target="_blank">https://lib.arvancloud.ir/</a></i></p>
+                                        <div class="bswan-input-row bg-round" style="margin: 12px 0; gap: 12px; flex-wrap: wrap;">
+                                            <input type="text" id="bswan-cdn-pattern" class="regular-text" style="flex:1;min-width:120px;" placeholder="<?php esc_attr_e('Pattern (e.g. jquery.js)', $this->td); ?>">
+                                            <input type="url" id="bswan-cdn-url" class="regular-text" style="flex:2;min-width:200px;" placeholder="<?php printf(esc_attr__('CDN URL (e.g. %s)', $this->td), "https://lib.arvancloud.ir/jquery/3.6.3/jquery.js"); ?>">
+
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" class="switch" id="bswan-cdn-backend">
+                                                <label for="bswan-cdn-backend"><span class="switch-x-text"><?php _e('Backend', $this->td); ?></span></label>
+                                            </div>
+
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" class="switch" id="bswan-cdn-frontend">
+                                                <label for="bswan-cdn-frontend"><span class="switch-x-text"><?php _e('Frontend', $this->td); ?></span></label>
+                                            </div>
+
+                                            <button type="button" style="min-width: 100px;" class="button button-primary" onclick="bswanAddCdn()"><?php _e('Add', $this->td); ?></button>
+                                        </div>
+                                        <div class="bswan-table-scroll">
+                                            <table class="widefat striped" id="bswan-cdn-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:22%;"><?php _e('Pattern', $this->td); ?></th>
+                                                        <th><?php _e('CDN URL', $this->td); ?></th>
+                                                        <th style="width:160px;"><?php _e('Conditions', $this->td); ?></th>
+                                                        <th style="width:65px;text-align:end;"><?php _e('Actions', $this->td); ?></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                        <div style="margin-top:8px;"><button type="button" class="button bswan-btn-danger" onclick="bswanDeleteAllCdn()"><?php echo $i['trash']; ?> <?php _e('Delete All', $this->td); ?></button></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- ════════════ SIDEBAR ════════════ -->
+                            <div id="postbox-container-1" class="postbox-container">
+
+                                <div class="postbox bswan-glass">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><span><?php _e('Actions', $this->td); ?></span></h2>
+                                    </div>
+                                    <div class="inside">
+                                        <button type="button" id="bswan-save-btn" class="button button-primary button-large bswan-full-btn"><?php echo $i['save']; ?> <?php _e('Save All Settings', $this->td); ?></button>
+                                        <span id="bswan-save-msg" class="bswan-msg"></span>
+                                        <hr style="margin:10px 0;">
+                                        <div class="bswan-pause-row">
+                                            <button type="button" id="bswan-pause-btn" class="button <?php echo $is_paused ? 'button-primary' : ''; ?> bswan-full-btn">
+                                                <span class="bswan-pause-icon"><?php echo $is_paused ? $i['play'] : $i['pause']; ?></span>
+                                                <span class="bswan-pause-label"><?php echo $is_paused ? __('Resume', $this->td) : __('Pause', $this->td); ?></span>
+                                            </button>
+                                        </div>
+                                        <div id="bswan-status-badge" class="bswan-status <?php echo $is_paused ? 'bswan-status-paused' : 'bswan-status-active'; ?>">
+                                            <span class="bswan-status-icon"><?php echo $is_paused ? $i['cpause'] : $i['activity']; ?></span>
+                                            <span class="bswan-status-text"><?php echo $is_paused ? __('Paused — all blocking disabled', $this->td) : __('Active — blocking rules enforced', $this->td); ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="postbox bswan-glass closed">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><span><?php _e('Safe Mode', $this->td); ?></span></h2>
+                                        <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
+                                    </div>
+                                    <div class="inside">
+                                        <p class="description" style="margin:0 0 8px;"><?php _e('Temporarily disable <strong>all</strong> blocking for a page load. Resource dequeuing is already skipped on this settings page — safe mode is for other broken admin pages.', $this->td); ?></p>
+                                        <a href="<?php echo esc_url($safe_mode_url); ?>" class="button bswan-full-btn"><?php echo $i['shldchk']; ?> <?php _e('Open in Safe Mode', $this->td); ?></a>
+                                        <p class="description" style="margin:8px 0 0;opacity:0.7;"><?php _e('Tip: Add <code>&bswan-safe=1</code> to any admin URL.', $this->td); ?></p>
+                                    </div>
+                                </div>
+
+                                <div class="postbox bswan-glass closed">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><span><?php _e('Tools', $this->td); ?></span></h2>
+                                        <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
+                                    </div>
+                                    <div class="inside">
+                                        <?php if ($qm_active): ?>
+                                            <p class="description" style="display:flex;align-items:center;gap:6px;"><?php echo $i['check']; ?> <?php _e('Query Monitor is active.', $this->td); ?></p>
+                                        <?php elseif ($qm_installed): ?>
+                                            <a href="<?php echo esc_url($qm_url); ?>" class="button bswan-full-btn" style="margin-bottom:6px;"><?php echo $i['play']; ?> <?php _e('Activate Query Monitor', $this->td); ?></a>
+                                            <p class="description"><?php _e('Installed but not active. Activate to inspect HTTP requests and enqueued resources.', $this->td); ?></p>
+                                        <?php else: ?>
+                                            <a href="<?php echo esc_url($qm_url); ?>" class="button bswan-full-btn" style="margin-bottom:6px;"><?php echo $i['search']; ?> <?php _e('Install Query Monitor', $this->td); ?></a>
+                                            <p class="description"><?php _e('See every HTTP request and enqueued resource. Highly recommended.', $this->td); ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
+                                <div class="postbox bswan-glass closed">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><span><?php _e('Export / Import', $this->td); ?></span></h2>
+                                        <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
+                                    </div>
+                                    <div class="inside">
+                                        <p class="description" style="margin:0 0 8px;"><?php _e('All plugin settings as a single JSON file.', $this->td); ?></p>
+                                        <button type="button" id="bswan-export-all" class="button bswan-full-btn" style="margin-bottom:6px;"><?php echo $i['download']; ?> <?php _e('Export All Settings', $this->td); ?></button>
+                                        <button type="button" id="bswan-import-all-btn" class="button bswan-full-btn"><?php echo $i['upload']; ?> <?php _e('Import Settings', $this->td); ?></button>
+                                        <input type="file" id="bswan-import-all" accept=".json" style="display:none;">
+                                        <span id="bswan-import-msg" class="bswan-msg"></span>
+                                    </div>
+                                </div>
+
+                                <div class="postbox bswan-glass closed" style="border-color: rgba(214,54,56,0.6) !important;background:rgba(214,54,56,0.04) !important;">
+                                    <div class="postbox-header" style="background:rgba(214,54,56,0.06) !important;">
+                                        <h2 class="hndle"><span><?php _e('Reset Settings', $this->td); ?></span></h2>
+                                        <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
+                                    </div>
+                                    <div class="inside">
+                                        <p class="description" style="margin:0 0 10px;"><?php _e('Restore all plugin settings to their original defaults. This will permanently erase your blacklist, whitelist, blocked resources, CDN replacements, and all toggle settings. <strong>This cannot be undone.</strong>', $this->td); ?></p>
+                                        <button type="button" id="bswan-reset-btn" class="button bswan-full-btn bswan-btn-danger"><?php echo $i['reset']; ?> <?php _e('Reset to Defaults', $this->td); ?></button>
+                                        <span id="bswan-reset-msg" class="bswan-msg"></span>
+                                    </div>
+                                </div>
+
+                                <div class="postbox bswan-glass bswan-status-paused" style="border-color:rgba(219,166,23,0.6) !important;">
+                                    <div class="postbox-header">
+                                        <h2 class="hndle"><span><?php _e('Disclaimer', $this->td); ?></span></h2>
+                                    </div>
+                                    <div class="inside">
+                                        <p class="description" style="margin:0;"><?php _e('This plugin blocks outgoing HTTP requests and browser resources. May prevent updates, license checks, fonts, CDN libraries, etc. Use at your own risk. Always maintain backups.', $this->td); ?></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /#bswan-advanced-wrap -->
             </div>
 
-            <style>
-                .checkbox-wrapper-flex {
-                    display: flex;
-                    gap: 8px;
-                    align-items: center;
-                }
-
-                .checkbox-wrapper .switch {
-                    display: none;
-                }
-
-                .checkbox-wrapper .switch+label {
-                    -webkit-box-align: center;
-                    -webkit-align-items: center;
-                    -ms-flex-align: center;
-                    align-items: center;
-                    color: #78768d;
-                    cursor: pointer;
-                    display: -webkit-box;
-                    display: -webkit-flex;
-                    display: -ms-flexbox;
-                    display: flex;
-                    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                    font-size: 12px;
-                    line-height: 15px;
-                    position: relative;
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
-                    user-select: none;
-                    gap: 5px;
-                }
-
-                .checkbox-wrapper .switch+label::before,
-                .checkbox-wrapper .switch+label::after {
-                    content: '';
-                    display: block;
-                }
-
-                .checkbox-wrapper .switch+label::before {
-                    background-color: #05012c;
-                    border-radius: 500px;
-                    height: 16px;
-                    -webkit-transition: background-color 0.125s ease-out;
-                    transition: background-color 0.125s ease-out;
-                    width: 30px;
-                }
-
-                .checkbox-wrapper .switch+label::after {
-                    background-color: #fff;
-                    border-radius: 13px;
-                    box-shadow: 0 3px 1px 0 rgba(37, 34, 71, 0.05), 0 2px 2px 0 rgba(37, 34, 71, 0.1), 0 3px 3px 0 rgba(37, 34, 71, 0.05);
-                    height: 12px;
-                    left: 2px;
-                    position: absolute;
-                    top: auto;
-                    -webkit-transition: -webkit-transform 0.125s ease-out;
-                    transition: -webkit-transform 0.125s ease-out;
-                    transition: transform 0.125s ease-out;
-                    transition: transform 0.125s ease-out, -webkit-transform 0.125s ease-out;
-                    width: 12px;
-                }
-
-                .checkbox-wrapper .switch+label .switch-x-text {
-                    display: block;
-                    margin-right: .3em;
-                }
-
-                .checkbox-wrapper .switch+label .switch-x-text>svg {
-                    width: 14px;
-                    height: 14px;
-                    margin: -2px 4px 0 0;
-                }
-
-                .checkbox-wrapper .switch+label .switch-x-toggletext {
-                    display: block;
-                    font-weight: bold;
-                    height: 15px;
-                    overflow: hidden;
-                    position: relative;
-                    width: 25px;
-                }
-
-                .checkbox-wrapper .switch+label .switch-x-unchecked,
-                .checkbox-wrapper .switch+label .switch-x-checked {
-                    left: 0;
-                    position: absolute;
-                    top: 0;
-                    -webkit-transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
-                    transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
-                    transition: transform 0.125s ease-out, opacity 0.125s ease-out;
-                    transition: transform 0.125s ease-out, opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
-                }
-
-                .checkbox-wrapper .switch+label .switch-x-unchecked {
-                    opacity: 1;
-                    -webkit-transform: none;
-                    transform: none;
-                }
-
-                .checkbox-wrapper .switch+label .switch-x-checked {
-                    opacity: 0;
-                    -webkit-transform: translate3d(0, 100%, 0);
-                    transform: translate3d(0, 100%, 0);
-                }
-
-                .checkbox-wrapper .switch+label .switch-x-hiddenlabel {
-                    position: absolute;
-                    visibility: hidden;
-                }
-
-                .checkbox-wrapper .switch:checked+label::before {
-                    background-color: #08bc02;
-                }
-
-                .checkbox-wrapper .switch:checked+label::after {
-                    -webkit-transform: translate3d(14px, 0, 0);
-                    transform: translate3d(14px, 0, 0);
-                }
-
-                .checkbox-wrapper .switch:checked+label .switch-x-unchecked {
-                    opacity: 0;
-                    -webkit-transform: translate3d(0, -100%, 0);
-                    transform: translate3d(0, -100%, 0);
-                }
-
-                .checkbox-wrapper .switch:checked+label .switch-x-checked {
-                    opacity: 1;
-                    -webkit-transform: none;
-                    transform: none;
-                }
-
-                /* ── Liquid Glass Design System ── */
-                .bswan-wrap {
-                    position: relative;
-                    padding: 20px 0;
-                }
-
-                .bswan-wrap::before {
-                    content: '';
-                    position: fixed;
-                    inset: 0;
-                    z-index: -1;
-                    background:
-                        radial-gradient(ellipse at 20% 50%, rgba(34, 113, 177, 0.06) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 20%, rgba(130, 110, 180, 0.06) 0%, transparent 50%),
-                        radial-gradient(ellipse at 60% 80%, rgba(0, 163, 42, 0.04) 0%, transparent 50%),
-                        radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.07) 1px, transparent 0);
-                    background-size: 100% 100%, 100% 100%, 100% 100%, 20px 20px;
-                }
-
-                .bswan-title {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    font-weight: 900 !important;
-                    letter-spacing: -0.01em;
-                }
-
-                .bswan-title sup {
-                    background: linear-gradient(135deg, #2271b1, #135e96);
-                    color: #fff;
-                    padding: 4px 10px;
-                    font-size: 11px;
-                    border-radius: 20px;
-                    font-weight: 600;
-                    letter-spacing: 0.03em;
-                    line-height: 1;
-                    position: relative;
-                    top: -0.7rem;
-                }
-
-                /* Glass postboxes */
-                .bswan-glass {
-                    background: rgba(255, 255, 255, 0.65) !important;
-                    backdrop-filter: blur(16px) saturate(1.4);
-                    -webkit-backdrop-filter: blur(16px) saturate(1.4);
-                    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-                    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
-                    border-radius: 14px !important;
-                    overflow: hidden;
-                }
-
-                .bswan-glass .postbox-header {
-                    background: rgba(255, 255, 255, 0.4) !important;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-                }
-
-                .bswan-glass .inside {
-                    padding: 14px 16px !important;
-                }
-
-                #post-body-content .postbox-header .hndle {
-                    justify-content: flex-start;
-                    gap: 6px;
-                }
-
-                .postbox-container .hndle {
-                    pointer-events: none;
-                    user-select: auto;
-                }
-
-                /* Notice */
-                .bswan-notice {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    padding: 12px 16px;
-                    border-radius: 10px;
-                    margin-bottom: 16px;
-                    font-size: 13px;
-                    backdrop-filter: blur(8px);
-                }
-
-                .bswan-notice-info {
-                    background: rgba(34, 113, 177, 0.08);
-                    border: 1px solid rgba(34, 113, 177, 0.2);
-                    color: #135e96;
-                }
-
-                /* Cards inside Section 1 */
-                #bswan-columns {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 16px;
-                    margin-top: 12px;
-                }
-
-                .bswan-card {
-                    background: rgba(255, 255, 255, 0.5);
-                    border: 1px solid rgba(0, 0, 0, 0.06);
-                    border-radius: 10px;
-                    overflow: hidden;
-                }
-
-                .bswan-card-header {
-                    padding: 10px 14px;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    background: rgba(255, 255, 255, 0.3);
-                }
-
-                .bswan-card-header h3 {
-                    margin: 0;
-                    display: flex;
-                    align-items: center;
-                    gap: 6px;
-                    font-size: 13px;
-                    font-weight: 600;
-                }
-
-                .bswan-card-body {
-                    display: flex;
-                    gap: 8px;
-                    flex-direction: column;
-                    padding: 10px 14px;
-                }
-
-                /* Badges */
-                .bswan-badge {
-                    padding: 2px 9px;
-                    border-radius: 10px;
-                    font-size: 11px;
-                    font-weight: 700;
-                    color: #fff;
-                    line-height: 1.4;
-                }
-
-                .bswan-badge-red {
-                    background: linear-gradient(135deg, #d63638, #b32d2e);
-                }
-
-                .bswan-badge-green {
-                    background: linear-gradient(135deg, #00a32a, #008a20);
-                }
-
-                /* Status badge */
-                .bswan-status {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    padding: 8px 12px;
-                    border-radius: 8px;
-                    font-size: 12px;
-                    font-weight: 600;
-                    margin-top: 10px;
-                    transition: all 0.3s ease;
-                }
-
-                .bswan-status-active {
-                    background: rgba(0, 163, 42, 0.08);
-                    border: 1px solid rgba(0, 163, 42, 0.2);
-                    color: #006b1a;
-                }
-
-                .bswan-status-paused {
-                    background: rgba(219, 166, 23, 0.08) !important;
-                    border: 1px solid rgba(219, 166, 23, 0.25) !important;
-                    color: #8c6a00 !important;
-                }
-
-                /* Table scroll */
-                .bswan-table-scroll {
-                    max-height: 300px;
-                    overflow-y: auto;
-                    border: 1px solid rgba(0, 0, 0, 0.08);
-                    border-radius: 8px;
-                }
-
-                .bswan-table-scroll>.widefat {
-                    border: 0;
-                }
-
-                .bswan-table-scroll>.widefat thead th {
-                    position: sticky;
-                    top: 0;
-                    background: rgba(240, 240, 241, 0.9);
-                    backdrop-filter: blur(4px);
-                    z-index: 1;
-                    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.08);
-                }
-
-                #bswan-br-table td.bswan-br-scope {
-                    text-align: center;
-                }
-
-                /* Inputs */
-                .bswan-input-row {
-                    display: flex;
-                    gap: 6px;
-                    align-items: center;
-                }
-
-                .bswan-input-row input[type="text"] {
-                    flex: 1;
-                }
-
-                .bswan-inline-label {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 3px;
-                    white-space: nowrap;
-                    font-size: 12px;
-                }
-
-                .bswan-checkbox-row {
-                    display: flex;
-                    gap: 24px;
-                    flex-wrap: wrap;
-                    margin-top: 8px;
-                }
-
-                /* Buttons */
-                .bswan-full-btn {
-                    width: 100%;
-                    display: flex !important;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 6px;
-                }
-
-                .bswan-btn-danger {
-                    color: #d63638 !important;
-                    border-color: rgba(214, 54, 56, 0.4) !important;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 4px;
-                }
-
-                .bswan-row-btn {
-                    padding: 3px 7px !important;
-                    min-height: 0 !important;
-                    line-height: 1 !important;
-                    display: inline-flex !important;
-                    align-items: center;
-                    border-radius: 6px !important;
-                }
-
-                .bswan-msg {
-                    display: none;
-                    font-weight: 600;
-                    text-align: center;
-                    font-size: 12px;
-                    margin-top: 12px;
-                }
-
-                #bswan-columns .widefat td.bswan-actions {
-                    text-align: right;
-                    white-space: nowrap;
-                }
-
-                #bswan-columns .widefat .bswan-edit-input,
-                #bswan-br-table .bswan-edit-input {
-                    width: calc(100% - 10px);
-                }
-
-                @media(max-width:782px) {
-                    #bswan-columns {
-                        grid-template-columns: 1fr !important;
-                    }
-                }
-            </style>
 
             <script>
                 jQuery(function($) {
                     postboxes.add_postbox_toggles(pagenow);
 
+                    // ── Advanced settings toggle ──
+                    var advOpen = localStorage.getItem('bswan_advanced') === '1';
+
+                    function bswanSetAdvanced(open) {
+                        advOpen = open;
+                        localStorage.setItem('bswan_advanced', open ? '1' : '0');
+                        if (open) {
+                            $('#bswan-advanced-wrap').slideDown(220);
+                            $('#bswan-advanced-arrow').addClass('bswan-arrow-open');
+                        } else {
+                            $('#bswan-advanced-wrap').slideUp(180);
+                            $('#bswan-advanced-arrow').removeClass('bswan-arrow-open');
+                        }
+                    }
+                    if (advOpen) {
+                        $('#bswan-advanced-wrap').show();
+                        $('#bswan-advanced-arrow').addClass('bswan-arrow-open');
+                    }
+                    $('#bswan-advanced-toggle').on('click', function() {
+                        bswanSetAdvanced(!advOpen);
+                    });
+
                     var bl = <?php echo $blacklist_json; ?>,
                         wl = <?php echo $whitelist_json; ?>,
-                        br = <?php echo $blocked_res_json; ?>;
+                        br = <?php echo $blocked_res_json; ?>,
+                        cr = <?php echo $cdn_replace_json; ?>;
                     var nonce = '<?php echo $nonce; ?>',
                         ajaxurl = '<?php echo $ajax_url; ?>',
                         isPaused = <?php echo $is_paused ? 'true' : 'false'; ?>;
@@ -1109,7 +966,9 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                             whitelist: wl,
                             block_resources_backend: $('#bswan-res-backend').is(':checked'),
                             block_resources_frontend: $('#bswan-res-frontend').is(':checked'),
-                            blocked_resources: br
+                            blocked_resources: br,
+                            disable_avatars: $('#bswan-disable-avatars').is(':checked'),
+                            cdn_replacements: cr
                         };
                         var a = document.createElement('a');
                         a.href = URL.createObjectURL(new Blob([JSON.stringify(s, null, 2)], {
@@ -1138,9 +997,12 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                                 if (Array.isArray(d.blocked_resources)) br = d.blocked_resources;
                                 if (typeof d.block_resources_backend !== 'undefined') $('#bswan-res-backend').prop('checked', !!d.block_resources_backend);
                                 if (typeof d.block_resources_frontend !== 'undefined') $('#bswan-res-frontend').prop('checked', !!d.block_resources_frontend);
+                                if (typeof d.disable_avatars !== 'undefined') $('#bswan-disable-avatars').prop('checked', !!d.disable_avatars);
+                                if (Array.isArray(d.cdn_replacements)) cr = d.cdn_replacements;
                                 renderTable('bl');
                                 renderTable('wl');
                                 renderResTable();
+                                renderCdnTable();
                                 $m.text('<?php _e('Imported. Save to apply.', $this->td); ?>').css('color', '#2271b1').show();
                             } catch (err) {
                                 $m.text('<?php _e('Failed to parse JSON.', $this->td); ?>').css('color', '#d63638').show();
@@ -1243,6 +1105,13 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                             backend: br[j].backend ? 1 : 0,
                             frontend: br[j].frontend ? 1 : 0
                         });
+                        var cs = [];
+                        for (var k = 0; k < cr.length; k++) cs.push({
+                            pattern: cr[k].pattern,
+                            cdn: cr[k].cdn,
+                            backend: cr[k].backend ? 1 : 0,
+                            frontend: cr[k].frontend ? 1 : 0
+                        });
                         $.post(ajaxurl, {
                             action: 'bswan_ber_save',
                             _nonce: nonce,
@@ -1250,7 +1119,9 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                             whitelist: wl,
                             block_resources_backend: $('#bswan-res-backend').is(':checked') ? 1 : 0,
                             block_resources_frontend: $('#bswan-res-frontend').is(':checked') ? 1 : 0,
-                            blocked_resources: bs
+                            blocked_resources: bs,
+                            disable_avatars: $('#bswan-disable-avatars').is(':checked') ? 1 : 0,
+                            cdn_replacements: cs
                         }, function(r) {
                             $b.prop('disabled', false);
                             $m.text(r.success ? r.data : '<?php _e('Error.', $this->td); ?>').css('color', r.success ? '#00a32a' : '#d63638').fadeIn().delay(3000).fadeOut();
@@ -1294,12 +1165,133 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                         });
                     });
 
+                    $('#bswan-reset-btn').on('click', function() {
+                        if (!confirm('<?php echo esc_js(__("Reset ALL settings to plugin defaults?\n\nThis will permanently erase your blacklist, whitelist, blocked resources, CDN replacements, and all toggle settings.\n\nThis action cannot be undone.", $this->td)); ?>')) return;
+                        var $b = $(this).prop('disabled', true),
+                            $m = $('#bswan-reset-msg');
+                        $.post(ajaxurl, {
+                            action: 'bswan_ber_reset',
+                            _nonce: nonce
+                        }, function(r) {
+                            if (r.success) {
+                                $m.text(r.data).css('color', '#00a32a').fadeIn();
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 1200);
+                            } else {
+                                $b.prop('disabled', false);
+                                $m.text(r.data || '<?php echo esc_js(__('Error.', $this->td)); ?>').css('color', '#d63638').fadeIn().delay(3000).fadeOut();
+                            }
+                        }).fail(function() {
+                            $b.prop('disabled', false);
+                            $m.text('<?php echo esc_js(__('Request failed.', $this->td)); ?>').css('color', '#d63638').fadeIn().delay(3000).fadeOut();
+                        });
+                    });
+
+                    function renderCdnTable() {
+                        var $tb = $('#bswan-cdn-table tbody');
+                        $tb.empty();
+                        if (!cr.length) {
+                            $tb.append('<tr><td colspan="4" style="text-align:center;color:#999;"><?php _e('No items.', $this->td); ?></td></tr>');
+                        } else {
+                            $.each(cr, function(idx, it) {
+                                $tb.append(
+                                    `<tr data-i="${idx}">
+                                    <td>
+                                        <span class="bswan-val">` + $('<span>').text(it.pattern).html() + `</span>
+                                        <input type="text" class="bswan-edit-input regular-text bswan-cdn-edit-pattern" value="` + $('<span>').text(it.pattern).html() + `" style="display:none;width:calc(100% - 10px);">
+                                    </td>
+                                    <td>
+                                        <span class="bswan-val bswan-cdn-val-url" style="word-break:break-all;font-size:12px;">` + $('<span>').text(it.cdn).html() + `</span>
+                                        <input type="url" class="bswan-edit-input regular-text bswan-cdn-edit-url" value="` + $('<span>').text(it.cdn).html() + `" style="display:none;width:calc(100% - 10px);">
+                                    </td>
+                                    <td class="bswan-conditions">
+                                        <div class="checkbox-wrapper-flex">
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" id="bswan-cdn-cb-be-${idx}" class="switch bswan-cdn-cb-be" ` + (it.backend ? 'checked' : '') + ` title="<?php esc_attr_e('Backend', $this->td); ?>">
+                                                <label for="bswan-cdn-cb-be-${idx}"><span class="switch-x-text"><?php _e('Backend', $this->td); ?></span></label>
+                                            </div>
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" id="bswan-cdn-cb-fe-${idx}" class="switch bswan-cdn-cb-fe" ` + (it.frontend ? 'checked' : '') + ` title="<?php esc_attr_e('Frontend', $this->td); ?>">
+                                                <label for="bswan-cdn-cb-fe-${idx}"><span class="switch-x-text"><?php _e('Frontend', $this->td); ?></span></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="bswan-actions">
+                                        <button type="button" class="button bswan-row-btn bswan-cdn-edit-btn" title="<?php esc_attr_e('Edit', $this->td); ?>">${svgEdit}</button>
+                                        <button type="button" class="button bswan-row-btn bswan-cdn-del-btn" title="<?php esc_attr_e('Delete', $this->td); ?>" style="color:#d63638;border-color:rgba(214,54,56,0.4);">${svgX}</button>
+                                    </td>
+                                </tr>`);
+                            });
+                        }
+                    }
+                    $(document).on('change', '.bswan-cdn-cb-be,.bswan-cdn-cb-fe', function() {
+                        var $tr = $(this).closest('tr'),
+                            idx = $tr.data('i');
+                        cr[idx].backend = $tr.find('.bswan-cdn-cb-be').is(':checked');
+                        cr[idx].frontend = $tr.find('.bswan-cdn-cb-fe').is(':checked');
+                    });
+                    $(document).on('click', '.bswan-cdn-edit-btn', function() {
+                        var $tr = $(this).closest('tr'),
+                            $vp = $tr.find('.bswan-val').first(),
+                            $vu = $tr.find('.bswan-cdn-val-url'),
+                            $ip = $tr.find('.bswan-cdn-edit-pattern'),
+                            $iu = $tr.find('.bswan-cdn-edit-url');
+                        if ($ip.is(':visible')) {
+                            var idx = $tr.data('i'),
+                                np = $.trim($ip.val()),
+                                nu = $.trim($iu.val());
+                            if (np) cr[idx].pattern = np;
+                            if (nu) cr[idx].cdn = nu;
+                            renderCdnTable();
+                        } else {
+                            $vp.hide();
+                            $vu.hide();
+                            $ip.show().focus().select();
+                            $iu.show();
+                        }
+                    });
+                    $(document).on('keydown', '#bswan-cdn-table .bswan-edit-input', function(e) {
+                        if (e.key === 'Enter') $(this).closest('tr').find('.bswan-cdn-edit-btn').click();
+                        if (e.key === 'Escape') renderCdnTable();
+                    });
+                    $(document).on('click', '.bswan-cdn-del-btn', function() {
+                        cr.splice($(this).closest('tr').data('i'), 1);
+                        renderCdnTable();
+                    });
+                    window.bswanAddCdn = function() {
+                        var p = $.trim($('#bswan-cdn-pattern').val()),
+                            u = $.trim($('#bswan-cdn-url').val());
+                        if (!p || !u) return;
+                        cr.push({
+                            pattern: p,
+                            cdn: u,
+                            backend: $('#bswan-cdn-backend').is(':checked'),
+                            frontend: $('#bswan-cdn-frontend').is(':checked')
+                        });
+                        $('#bswan-cdn-pattern').val('');
+                        $('#bswan-cdn-url').val('');
+                        renderCdnTable();
+                    };
+                    $('#bswan-cdn-pattern,#bswan-cdn-url').on('keydown', function(e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            bswanAddCdn();
+                        }
+                    });
+                    window.bswanDeleteAllCdn = function() {
+                        if (!confirm('<?php _e('Are you sure?', $this->td); ?>')) return;
+                        cr = [];
+                        renderCdnTable();
+                    };
+
                     renderTable('bl');
                     renderTable('wl');
                     renderResTable();
+                    renderCdnTable();
                 });
             </script>
-<?php
+            <?php
         }
     }
     add_action("plugins_loaded", function () {

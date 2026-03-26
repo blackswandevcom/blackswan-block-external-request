@@ -4,7 +4,7 @@
 Take control of every outgoing connection your WordPress site makes.<br>
 Block unwanted HTTP requests, dequeue external JS/CSS, and speed up your admin panel.
 
-![Version](https://img.shields.io/badge/version-2.6.0-2271b1?style=flat-square)
+![Version](https://img.shields.io/badge/version-2.7.0-2271b1?style=flat-square)
 ![License](https://img.shields.io/badge/license-GPLv2-green?style=flat-square)
 ![PHP](https://img.shields.io/badge/PHP-5.4%2B-purple?style=flat-square)
 ![WordPress](https://img.shields.io/badge/WordPress-5.0%E2%80%936.8-blue?style=flat-square)
@@ -15,10 +15,6 @@ Block unwanted HTTP requests, dequeue external JS/CSS, and speed up your admin p
 [Rate 5-Star](https://wordpress.org/support/plugin/blackswan-block-external-request/reviews/#new-post) ·
 [Support & Issues](https://wordpress.org/support/plugin/blackswan-block-external-request/) ·
 Get from [WordPress.org](https://wordpress.org/plugins/blackswan-block-external-request/)
-
-## Screenshot
-
-<img src="screenshot.png" width="80" style="border-radius: 8px; width: 100%; max-width: 700px;" alt="BlackSwan" />
 
 ---
 
@@ -77,7 +73,7 @@ This bypasses **all** blocking rules for that page load. The settings page also 
 
 ## Developer Hooks
 
-Two filters are available for developers to modify the blacklist and whitelist programmatically. These run on every page load and merge with the settings page values.
+Four filters are available for developers to customize blocking behavior programmatically. These run on every page load and merge with the values from the settings page.
 
 ### `BlackSwan\block_external_request\block_url_list`
 
@@ -108,6 +104,39 @@ add_filter( 'BlackSwan\block_external_request\whitelist_urls', function( $patter
 ```
 
 **Note:** Whitelist patterns take priority over blacklist domains. Both filters accept and return a flat array of strings.
+
+### `BlackSwan\block_external_request\blocked_resources`
+
+Filter the array of specific JS/CSS resources to block. Each entry is an associative array with `url`, `backend`, and `frontend` keys. The `url` is matched via `strpos()` against each registered script/style source.
+
+```php
+add_filter( 'BlackSwan\block_external_request\blocked_resources', function( $resources ) {
+    // Block a specific JS file on the frontend only
+    $resources[] = array(
+        'url'      => 'some-plugin/tracking.js',
+        'backend'  => false,
+        'frontend' => true,
+    );
+    return $resources;
+});
+```
+
+### `BlackSwan\block_external_request\cdn_replacements`
+
+Filter the array of CDN replacement rules. Each entry is an associative array with `pattern`, `cdn`, `backend`, and `frontend` keys. When an enqueued asset's source contains the `pattern`, it is replaced with the `cdn` URL.
+
+```php
+add_filter( 'BlackSwan\block_external_request\cdn_replacements', function( $replacements ) {
+    // Replace jQuery with a CDN version on the frontend
+    $replacements[] = array(
+        'pattern'  => '/wp-includes/js/jquery/jquery.min.js',
+        'cdn'      => 'https://cdn.example.com/jquery/3.7.1/jquery.min.js',
+        'backend'  => false,
+        'frontend' => true,
+    );
+    return $replacements;
+});
+```
 
 ## FAQ
 
@@ -143,6 +172,27 @@ We welcome contributions! You can:
 - **Rate the plugin** [5 stars](https://wordpress.org/support/plugin/blackswan-block-external-request/reviews/#new-post) if you find it useful
 
 ## Changelog
+
+### 2.7.0
+* Documented all four developer filters with full examples (`block_url_list`, `whitelist_urls`, `blocked_resources`, `cdn_replacements`)
+* Improved readme files for WordPress.org publishing
+
+### 2.6.7
+* Added at-a-glance overview panel at the top of the settings page with 5 stat cards (HTTP blocking, browser resources, specific resources, CDN replacements, avatars) for non-technical users
+* All technical configuration metaboxes now hidden behind a "Configure & Advanced Settings" toggle, collapsed by default, state remembered in localStorage
+* Moved "Reset to Defaults" into its own dedicated sidebar metabox with a clear destructive-action warning
+* Fixed confirm dialog line breaks (were showing as literal \n on some browsers)
+
+### 2.6.6
+* Added "Reset to Defaults" button in Export/Import panel with a destructive-action warning notice and two-step confirmation before wiping settings
+
+### 2.6.5
+* Added new "CDN Resource Replacements" section: replace enqueued JS/CSS with CDN versions by pattern matching, with per-entry backend/frontend toggles, and predefined examples (jQuery, Bootstrap via lib.arvancloud.ir)
+* Export/Import support for CDN replacements
+* DEV: Added `BlackSwan\block_external_request\cdn_replacements` filter for programmatic replacement rules
+
+### 2.6.4
+* Added new "Avatars" section in settings: option to disable all WordPress avatars site-wide (default: disabled), preventing outgoing Gravatar requests and removing avatar markup
 
 ### 2.6.2
 - Added pre-defined list of common analytics/tracking domains to the default blacklist (e.g. Google Analytics, Hotjar, Matomo etc.)

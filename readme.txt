@@ -5,7 +5,7 @@ Tags: external requests, performance, blacklist, whitelist, block http requests
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 2.6.2
+Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,7 +56,7 @@ Block individual JS or CSS files by full URL, partial path, or even just a filen
 
 = Developer Hooks =
 
-Two filters are available for developers to customize blocking behavior programmatically. These run on every page load and merge with the values from the settings page.
+Four filters are available for developers to customize blocking behavior programmatically. These run on every page load and merge with the values from the settings page.
 
 **`BlackSwan\block_external_request\block_url_list`**
 
@@ -77,6 +77,24 @@ Filter the array of whitelisted URL patterns. If a blocked URL also matches a wh
 });`
 
 Whitelist patterns take priority over blacklist domains. Both filters accept and return a flat array of strings.
+
+**`BlackSwan\block_external_request\blocked_resources`**
+
+Filter the array of specific JS/CSS resources to block. Each entry is an associative array with `url`, `backend`, and `frontend` keys. The `url` is matched via `strpos()` against each registered script/style source.
+
+`add_filter( 'BlackSwan\block_external_request\blocked_resources', function( $resources ) {
+    $resources[] = array( 'url' => 'some-plugin/tracking.js', 'backend' => false, 'frontend' => true );
+    return $resources;
+});`
+
+**`BlackSwan\block_external_request\cdn_replacements`**
+
+Filter the array of CDN replacement rules. Each entry is an associative array with `pattern`, `cdn`, `backend`, and `frontend` keys. When an enqueued asset source contains the `pattern`, it is replaced with the `cdn` URL.
+
+`add_filter( 'BlackSwan\block_external_request\cdn_replacements', function( $replacements ) {
+    $replacements[] = array( 'pattern' => '/wp-includes/js/jquery/jquery.min.js', 'cdn' => 'https://cdn.example.com/jquery/3.7.1/jquery.min.js', 'backend' => false, 'frontend' => true );
+    return $replacements;
+});`
 
 = Links =
 
@@ -139,10 +157,34 @@ We welcome contributions! You can:
 
 == Screenshots ==
 
-1. Settings page with all sections and sidebar
-2. Previous version information with no UI
+1. Collapsed Settings page [EN]
+2. Collapsed Settings page [FA]
+3. Expanded Settings page [EN]
+4. Expanded Settings page [FA]
+5. Initial version with no UI
 
 == Changelog ==
+
+= 2.7.0 =
+* Documented all four developer filters with full examples (`block_url_list`, `whitelist_urls`, `blocked_resources`, `cdn_replacements`)
+* Improved readme files for WordPress.org publishing
+
+= 2.6.7 =
+* Added at-a-glance overview panel at the top of the settings page with 5 stat cards (HTTP blocking, browser resources, specific resources, CDN replacements, avatars) for non-technical users
+* All technical configuration metaboxes now hidden behind a "Configure & Advanced Settings" toggle, collapsed by default, state remembered in localStorage
+* Moved "Reset to Defaults" into its own dedicated sidebar metabox with a clear destructive-action warning
+* Fixed confirm dialog line breaks (were showing as literal \n on some browsers)
+
+= 2.6.6 =
+* Added "Reset to Defaults" button in Export/Import panel with a destructive-action warning notice and two-step confirmation before wiping settings
+
+= 2.6.5 =
+* Added new "CDN Resource Replacements" section: replace enqueued JS/CSS with CDN versions by pattern matching, with per-entry backend/frontend toggles, and predefined examples (jQuery, Bootstrap via lib.arvancloud.ir)
+* Export/Import support for CDN replacements
+* DEV: Added `BlackSwan\block_external_request\cdn_replacements` filter for programmatic replacement rules
+
+= 2.6.4 =
+* Added new "Avatars" section in settings: option to disable all WordPress avatars site-wide (default: disabled), preventing outgoing Gravatar requests and removing avatar markup
 
 = 2.6.2 =
 * Added pre-defined list of common analytics/tracking domains to the default blacklist (e.g. Google Analytics, Hotjar, Matomo etc.)
@@ -221,13 +263,11 @@ We welcome contributions! You can:
 
 == Upgrade Notice ==
 
-= 2.6.2 =
-* Added pre-defined list of common analytics/tracking domains to the default blacklist (e.g. Google Analytics, Hotjar, Matomo etc.)
-* Added pre-defined list of common Iranian payment gateway domains to the default blacklist (e.g. Zarinpal, Pay.ir, IDPay etc.)
-* DEV: Added `BlackSwan\block_external_request\blocked_resources` filter to allow programmatic blocking of specific JS/CSS resources by URL pattern
+= 2.7.0 =
+Documented all four developer filters with full examples. Improved readme for WordPress.org. Safe to upgrade, all settings preserved.
 
-= 2.6.0 =
-Major UI overhaul with liquid glass design and inline SVG icons. Fully standalone — no external dependencies. Safe to upgrade, all settings preserved.
+= 2.6.7 =
+Added at-a-glance overview panel, collapsible advanced settings, and dedicated Reset to Defaults metabox.
 
 For the full changelog, see [GitHub Repository](https://github.com/blackswandevcom/blackswan-block-external-request?tab=readme-ov-file#changelog).
 

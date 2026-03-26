@@ -51,3 +51,4 @@ wp-config.php
 .vscode/settings.json
 .vscode/bookmarks.json
 **/.DS_Store
+security-audit.html
