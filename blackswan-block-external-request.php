@@ -19,7 +19,7 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/03/25 17:02:28
+ * @Last modified time: 2026/04/05 20:09:32
 */
 namespace BlackSwan;
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>BlackSwan | Block External Request Plugin :: Developed by Amirhp-com (<a href='https://amirhp.com/'>https://amirhp.com/</a>)</small>");
@@ -187,7 +187,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
         }
         public function __construct() {
             $this->td      = "blackswan-block-external-request";
-            $this->version = "2.6.7";
+            $this->version = "2.7.0";
             load_plugin_textdomain($this->td, false, dirname(plugin_basename(__FILE__)) . "/languages/");
             $this->title = __("Block External Request", $this->td);
 
