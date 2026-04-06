@@ -5,7 +5,7 @@ Tags: external requests, performance, blacklist, whitelist, block http requests
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 2.7.0
+Stable tag: 2.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,9 @@ We welcome contributions! You can:
 
 == Changelog ==
 
+= 2.8.0 =
+* Expanded the default blacklist with 30+ additional domains commonly responsible for license checks, telemetry, and update pings (e.g. freemius.com, themeforest.com, cloudflare.com, wpbakery.com, xtemos.com, premio.io, nextendweb.com, objectcache.pro, rocketcdn.me, ipinfo.io, paypal.com, and several Iranian plugin/theme vendors)
+
 = 2.7.0 =
 * Documented all four developer filters with full examples (`block_url_list`, `whitelist_urls`, `blocked_resources`, `cdn_replacements`)
 * Improved readme files for WordPress.org publishing
@@ -263,11 +266,9 @@ We welcome contributions! You can:
 
 == Upgrade Notice ==
 
-= 2.7.0 =
-Documented all four developer filters with full examples. Improved readme for WordPress.org. Safe to upgrade, all settings preserved.
-
-= 2.6.7 =
-Added at-a-glance overview panel, collapsible advanced settings, and dedicated Reset to Defaults metabox.
+= 2.8.0 =
+- Release date: 2026-04-06 | 1405-01-17
+- Expanded default blacklist with 30+ additional license/telemetry/update domains. Safe to upgrade, all settings preserved.
 
 For the full changelog, see [GitHub Repository](https://github.com/blackswandevcom/blackswan-block-external-request?tab=readme-ov-file#changelog).
 

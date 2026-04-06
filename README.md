@@ -173,6 +173,11 @@ We welcome contributions! You can:
 
 ## Changelog
 
+### 2.8.0
+* Release date: 2026-04-06 | 1405-01-17
+* Expanded default blacklist with 30+ additional license/telemetry/update domains
+
+
 ### 2.7.0
 * Documented all four developer filters with full examples (`block_url_list`, `whitelist_urls`, `blocked_resources`, `cdn_replacements`)
 * Improved readme files for WordPress.org publishing

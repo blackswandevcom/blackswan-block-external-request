@@ -8,8 +8,8 @@
  Contributors: blackswanlab, amirhpcom
  Donate link: https://amirhp.com/contact/#payment
  Tags: external requests, performance, blacklist, whitelist, block http requests
- Version: 2.7.0
- Stable tag: 2.7.0
+ Version: 2.8.0
+ Stable tag: 2.8.0
  Requires PHP: 5.4
  Tested up to: 6.8
  Requires at least: 5.0
@@ -19,15 +19,17 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/04/05 20:09:32
+ * @Last modified time: 2026/04/06 23:35:07
 */
+
 namespace BlackSwan;
+
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>BlackSwan | Block External Request Plugin :: Developed by Amirhp-com (<a href='https://amirhp.com/'>https://amirhp.com/</a>)</small>");
 if (!class_exists("\BlackSwan\blockExternalRequest")) {
     class blockExternalRequest {
-        public $td;
-        public $version;
-        public $title;
+        public $td = "blackswan-block-external-request";
+        public $version = "2.8.0";
+        public $title = "Block External Request";
         protected $block_url_list;
         protected $whitelist_urls;
         private $option_key = 'bswan_ber_settings';
@@ -39,6 +41,9 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             "wp.com",
             "wincher.com",
             "yoa.st",
+            "bitbucket.org",
+            "us-themes.com",
+            "duplicator.com",
             "yoast.com",
             "wordpress.org",
             "wordpress.com",
@@ -50,6 +55,34 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             "google.com",
             "rtl-theme.com",
             "zhaket",
+            "premio.io",
+            "nextendweb.com",
+            "objectcache.pro",
+            "themeforest.com",
+            "wpbakery.com",
+            "cloudflare.com",
+            "xtemos.com",
+            "themehigh.com",
+            "gravityapi.com",
+            "wpcode.com",
+            "wpmailsmtpapi.com",
+            "freemius.com",
+            "translationspress.com",
+            "wpcodeusage.com",
+            "gpltimes.com",
+            "sigmaplugin.com",
+            "rocketcdn.me",
+            "gravityforms.ir",
+            "woocommerce.ir",
+            "woosupport.ir",
+            "wpmailsmtp.com",
+            "wpmailsmtpusage.com",
+            "wpnovin.com",
+            "ipinfo.io",
+            "woohash.ir",
+            "woonotice.ir",
+            "paypal.com",
+            "ip-api.co",
             "gravatar.com",
             "googleapis",
             "fonts.googleapis.com",
@@ -186,10 +219,12 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $s . '" height="' . $s . '" viewBox="0 0 24 24" fill="none" stroke="' . $color . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;flex-shrink:0;">' . $icons[$name] . '</svg>';
         }
         public function __construct() {
-            $this->td      = "blackswan-block-external-request";
-            $this->version = "2.7.0";
+
             load_plugin_textdomain($this->td, false, dirname(plugin_basename(__FILE__)) . "/languages/");
-            $this->title = __("Block External Request", $this->td);
+
+            add_action("init", function () {
+                $this->title = __("Block External Request", $this->td);
+            });
 
             $this->load_settings();
 
@@ -431,14 +466,14 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             }));
             $blacklist_json   = wp_json_encode(array_values($this->settings['blacklist']));
             $whitelist_json   = wp_json_encode(array_values($this->settings['whitelist']));
-            $blocked_res_json    = wp_json_encode(array_values(!empty($this->settings['blocked_resources']) ? $this->settings['blocked_resources'] : array()));
-            $cdn_replace_json    = wp_json_encode(array_values(!empty($this->settings['cdn_replacements']) ? $this->settings['cdn_replacements'] : array()));
+            $blocked_res_json = wp_json_encode(array_values(!empty($this->settings['blocked_resources']) ? $this->settings['blocked_resources'] : array()));
+            $cdn_replace_json = wp_json_encode(array_values(!empty($this->settings['cdn_replacements']) ? $this->settings['cdn_replacements'] : array()));
             $nonce            = wp_create_nonce('bswan_ber_nonce');
             $ajax_url         = admin_url('admin-ajax.php');
             $qm_active        = is_plugin_active('query-monitor/query-monitor.php');
             $qm_installed     = file_exists(WP_PLUGIN_DIR . '/query-monitor/query-monitor.php');
-            $qm_url = $qm_installed ? wp_nonce_url(admin_url('plugins.php?action=activate&plugin=query-monitor/query-monitor.php'), 'activate-plugin_query-monitor/query-monitor.php') : admin_url('plugin-install.php?s=query+monitor&tab=search&type=term');
-            $safe_mode_url = admin_url('options-general.php?page=bswan-ber-settings&bswan-safe=1');
+            $qm_url           = $qm_installed ? wp_nonce_url(admin_url('plugins.php?action=activate&plugin=query-monitor/query-monitor.php'), 'activate-plugin_query-monitor/query-monitor.php') : admin_url('plugin-install.php?s=query+monitor&tab=search&type=term');
+            $safe_mode_url    = admin_url('options-general.php?page=bswan-ber-settings&bswan-safe=1');
             $i = array(
                 'cloud'    => self::icon('cloud', '#2271b1'),
                 'shield'   => self::icon('shield', '#d63638'),
@@ -463,7 +498,6 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 'repeat'   => self::icon('repeat', '#826eb4'),
                 'reset'    => self::icon('rotate-ccw', '#d63638'),
             );
-
             add_filter("admin_footer_text", function () {
                 return sprintf(__('Developed by %s — Another Free & Open-source project by %s', $this->td), '<a href="https://amirhp.com/" target="_blank">AmirhpCom</a>', '<a href="https://blackswandev.com/" target="_blank">BlackSwan</a>');
             }, 9999);
@@ -854,8 +888,6 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                     </div>
                 </div><!-- /#bswan-advanced-wrap -->
             </div>
-
-
             <script>
                 jQuery(function($) {
                     postboxes.add_postbox_toggles(pagenow);
