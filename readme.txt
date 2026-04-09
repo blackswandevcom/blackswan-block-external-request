@@ -5,7 +5,7 @@ Tags: external requests, performance, blacklist, whitelist, block http requests
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 2.8.0
+Stable tag: 2.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,9 @@ We welcome contributions! You can:
 
 == Changelog ==
 
+= 2.9.0 =
+* Added "Disable All Emoji" option: removes WordPress emoji detection script, emoji styles, TinyMCE emoji plugin, and DNS prefetch hints for the emoji CDN — eliminating outgoing requests to s.w.org
+
 = 2.8.0 =
 * Expanded the default blacklist with 30+ additional domains commonly responsible for license checks, telemetry, and update pings (e.g. freemius.com, themeforest.com, cloudflare.com, wpbakery.com, xtemos.com, premio.io, nextendweb.com, objectcache.pro, rocketcdn.me, ipinfo.io, paypal.com, and several Iranian plugin/theme vendors)
 
@@ -265,6 +268,10 @@ We welcome contributions! You can:
 * Filter hook `BlackSwan\block_external_request\block_url_list` for customization
 
 == Upgrade Notice ==
+
+= 2.9.0 =
+- Release date: 2026-04-09 | 1405-01-20
+- New "Disable All Emoji" toggle eliminates outgoing WordPress emoji requests. Safe to upgrade, all settings preserved.
 
 = 2.8.0 =
 - Release date: 2026-04-06 | 1405-01-17

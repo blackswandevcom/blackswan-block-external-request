@@ -8,8 +8,8 @@
  Contributors: blackswanlab, amirhpcom
  Donate link: https://amirhp.com/contact/#payment
  Tags: external requests, performance, blacklist, whitelist, block http requests
- Version: 2.8.0
- Stable tag: 2.8.0
+ Version: 2.9.0
+ Stable tag: 2.9.0
  Requires PHP: 5.4
  Tested up to: 6.8
  Requires at least: 5.0
@@ -19,7 +19,7 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/04/06 23:35:07
+ * @Last modified time: 2026/04/09 18:35:39
 */
 
 namespace BlackSwan;
@@ -28,7 +28,7 @@ defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>BlackSwan | B
 if (!class_exists("\BlackSwan\blockExternalRequest")) {
     class blockExternalRequest {
         public $td = "blackswan-block-external-request";
-        public $version = "2.8.0";
+        public $version = "2.9.0";
         public $title = "Block External Request";
         protected $block_url_list;
         protected $whitelist_urls;
@@ -232,6 +232,9 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 add_filter('pre_option_show_avatars', '__return_zero');
                 add_filter('get_avatar', '__return_empty_string');
             }
+            if (!empty($this->settings['disable_emoji'])) {
+                add_action('init', array($this, "disable_emojis"));
+            }
 
             if (!empty($this->settings['cdn_replacements'])) {
                 add_filter('script_loader_src', array($this, 'replace_cdn_resource'), 10, 1);
@@ -271,12 +274,61 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 add_filter("plugin_action_links_" . plugin_basename(__FILE__), array($this, "plugin_action_links"));
             }
         }
+        public function disable_emojis() {
+            remove_action('wp_head', 'print_emoji_detection_script', 7);
+            remove_action('admin_print_scripts', 'print_emoji_detection_script');
+            remove_action('wp_print_styles', 'print_emoji_styles');
+            remove_action('admin_print_styles', 'print_emoji_styles');
+            remove_filter('the_content_feed', 'wp_staticize_emoji');
+            remove_filter('comment_text_rss', 'wp_staticize_emoji');
+            remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+            add_filter('tiny_mce_plugins', array($this, "disable_emojis_tinymce"));
+            add_filter('wp_resource_hints', array($this, "disable_emojis_remove_dns_prefetch"), 10, 2);
+        }
+        /**
+         * Filter function used to remove the tinymce emoji plugin.
+         *
+         * @param array $plugins
+         * @return array Difference betwen the two arrays
+         */
+        public function disable_emojis_tinymce($plugins) {
+            if (is_array($plugins)) {
+                return array_diff($plugins, array('wpemoji'));
+            } else {
+                return array();
+            }
+        }
+        /**
+         * Remove emoji CDN hostname from DNS prefetching hints.
+         *
+         * @param array $urls URLs to print for resource hints.
+         * @param string $relation_type The relation type the URLs are printed for.
+         * @return array Difference betwen the two arrays.
+         */
+        public function disable_emojis_remove_dns_prefetch($urls, $relation_type) {
+            if ('dns-prefetch' == $relation_type) {
+                /** This filter is documented in wp-includes/formatting.php */
+                $emoji_svg_url = apply_filters('emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/');
+                $urls = array_diff($urls, array($emoji_svg_url));
+            }
+            return $urls;
+        }
         private function is_safe_mode() {
             if (!is_admin()) return false;
             return (isset($_GET['bswan-safe']) && $_GET['bswan-safe'] === '1');
         }
         private function load_settings() {
-            $defaults = array('blacklist' => self::$default_blacklist, 'whitelist' => self::$default_whitelist, 'paused' => false, 'block_resources_backend' => false, 'block_resources_frontend' => false, 'blocked_resources' => self::$default_resources, 'disable_avatars' => true, 'cdn_replacements' => self::$default_cdn_replacements);
+            $defaults = array(
+                'blacklist' => self::$default_blacklist,
+                'whitelist' => self::$default_whitelist,
+                'paused' => false,
+                'block_resources_backend' => false,
+                'block_resources_frontend' => false,
+                'blocked_resources' => self::$default_resources,
+                'disable_avatars' => true,
+                'disable_emoji' => true,
+                'cdn_replacements' => self::$default_cdn_replacements
+            );
             $raw = get_option($this->option_key, false);
             if ($raw === false) {
                 $this->settings = $defaults;
@@ -305,6 +357,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             $this->settings['block_resources_backend']  = !empty($_POST['block_resources_backend']);
             $this->settings['block_resources_frontend'] = !empty($_POST['block_resources_frontend']);
             $this->settings['disable_avatars']          = !empty($_POST['disable_avatars']);
+            $this->settings['disable_emoji']            = !empty($_POST['disable_emoji']);
             $blocked_resources = array();
             if (!empty($_POST['blocked_resources']) && is_array($_POST['blocked_resources'])) {
                 foreach ($_POST['blocked_resources'] as $item) {
@@ -446,6 +499,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             $res_backend      = !empty($this->settings['block_resources_backend']);
             $res_frontend     = !empty($this->settings['block_resources_frontend']);
             $disable_avatars  = !empty($this->settings['disable_avatars']);
+            $disable_emoji  = !empty($this->settings['disable_emoji']);
             $br_list      = !empty($this->settings['blocked_resources']) ? $this->settings['blocked_resources'] : array();
             $cdn_list     = !empty($this->settings['cdn_replacements'])  ? $this->settings['cdn_replacements']  : array();
             $bl_count     = count($this->settings['blacklist']);
@@ -501,7 +555,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             add_filter("admin_footer_text", function () {
                 return sprintf(__('Developed by %s — Another Free & Open-source project by %s', $this->td), '<a href="https://amirhp.com/" target="_blank">AmirhpCom</a>', '<a href="https://blackswandev.com/" target="_blank">BlackSwan</a>');
             }, 9999);
-            ?>
+?>
             <div class="wrap bswan-wrap">
                 <h1 class="bswan-title"><?php echo esc_html__("BlackSwan - Block External Request", $this->td); ?> <sup><?php echo esc_html($this->version); ?></sup></h1>
 
@@ -706,6 +760,10 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                                             <div class="checkbox-wrapper">
                                                 <input type="checkbox" class="switch" id="bswan-disable-avatars" <?php checked($disable_avatars); ?> />
                                                 <label for="bswan-disable-avatars"><span class="switch-x-text"><?php echo $i['user']; ?><?php _e('Disable All Avatars', $this->td); ?></span><span class="switch-x-toggletext"><span class="switch-x-unchecked">Off</span><span class="switch-x-checked">On</span></span></label>
+                                            </div>
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" class="switch" id="bswan-disable-emoji" <?php checked($disable_emoji); ?> />
+                                                <label for="bswan-disable-emoji"><span class="switch-x-text"><?php echo $i['user']; ?><?php _e('Disable All Emoji', $this->td); ?></span><span class="switch-x-toggletext"><span class="switch-x-unchecked">Off</span><span class="switch-x-checked">On</span></span></label>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -1000,6 +1058,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                             block_resources_frontend: $('#bswan-res-frontend').is(':checked'),
                             blocked_resources: br,
                             disable_avatars: $('#bswan-disable-avatars').is(':checked'),
+                            disable_emoji: $('#bswan-disable-emoji').is(':checked'),
                             cdn_replacements: cr
                         };
                         var a = document.createElement('a');
@@ -1030,6 +1089,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                                 if (typeof d.block_resources_backend !== 'undefined') $('#bswan-res-backend').prop('checked', !!d.block_resources_backend);
                                 if (typeof d.block_resources_frontend !== 'undefined') $('#bswan-res-frontend').prop('checked', !!d.block_resources_frontend);
                                 if (typeof d.disable_avatars !== 'undefined') $('#bswan-disable-avatars').prop('checked', !!d.disable_avatars);
+                                if (typeof d.disable_emoji !== 'undefined') $('#bswan-disable-emoji').prop('checked', !!d.disable_emoji);
                                 if (Array.isArray(d.cdn_replacements)) cr = d.cdn_replacements;
                                 renderTable('bl');
                                 renderTable('wl');
@@ -1153,6 +1213,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                             block_resources_frontend: $('#bswan-res-frontend').is(':checked') ? 1 : 0,
                             blocked_resources: bs,
                             disable_avatars: $('#bswan-disable-avatars').is(':checked') ? 1 : 0,
+                            disable_emoji: $('#bswan-disable-emoji').is(':checked') ? 1 : 0,
                             cdn_replacements: cs
                         }, function(r) {
                             $b.prop('disabled', false);
@@ -1323,7 +1384,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                     renderCdnTable();
                 });
             </script>
-            <?php
+<?php
         }
     }
     add_action("plugins_loaded", function () {
