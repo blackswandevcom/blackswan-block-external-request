@@ -8,8 +8,8 @@
  Contributors: blackswanlab, amirhpcom
  Donate link: https://amirhp.com/contact/#payment
  Tags: external requests, performance, blacklist, whitelist, block http requests
- Version: 2.9.0
- Stable tag: 2.9.0
+ Version: 2.9.1
+ Stable tag: 2.9.1
  Requires PHP: 5.4
  Tested up to: 6.8
  Requires at least: 5.0
@@ -19,7 +19,7 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/04/09 18:35:39
+ * @Last modified time: 2026/04/11 13:15:21
 */
 
 namespace BlackSwan;
@@ -28,7 +28,7 @@ defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>BlackSwan | B
 if (!class_exists("\BlackSwan\blockExternalRequest")) {
     class blockExternalRequest {
         public $td = "blackswan-block-external-request";
-        public $version = "2.9.0";
+        public $version = "2.9.1";
         public $title = "Block External Request";
         protected $block_url_list;
         protected $whitelist_urls;
@@ -53,6 +53,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             "easydigitaldownloads.com",
             "github.com",
             "google.com",
+            "fontawesome.com",
             "rtl-theme.com",
             "zhaket",
             "premio.io",
@@ -246,7 +247,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
 
             $is_safe     = $this->is_safe_mode();
             $is_paused   = !empty($this->settings['paused']);
-            $is_own_page = (is_admin() && isset($_GET['page']) && $_GET['page'] === 'bswan-ber-settings');
+            $is_own_page = false; // (is_admin() && isset($_GET['page']) && $_GET['page'] === 'bswan-ber-settings');
 
             if (!$is_safe && !$is_paused) {
                 add_filter("pre_http_request", array($this, "block_external_request"), 10, 3);
@@ -322,8 +323,8 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 'blacklist' => self::$default_blacklist,
                 'whitelist' => self::$default_whitelist,
                 'paused' => false,
-                'block_resources_backend' => false,
-                'block_resources_frontend' => false,
+                'block_resources_backend' => true,
+                'block_resources_frontend' => true,
                 'blocked_resources' => self::$default_resources,
                 'disable_avatars' => true,
                 'disable_emoji' => true,

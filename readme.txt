@@ -5,7 +5,7 @@ Tags: external requests, performance, blacklist, whitelist, block http requests
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 2.9.0
+Stable tag: 2.9.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,9 @@ We welcome contributions! You can:
 
 == Changelog ==
 
+= 2.9.1 =
+* Added fontawesome to exclude list, and set some default options ON by default
+
 = 2.9.0 =
 * Added "Disable All Emoji" option: removes WordPress emoji detection script, emoji styles, TinyMCE emoji plugin, and DNS prefetch hints for the emoji CDN — eliminating outgoing requests to s.w.org
 
@@ -268,6 +271,10 @@ We welcome contributions! You can:
 * Filter hook `BlackSwan\block_external_request\block_url_list` for customization
 
 == Upgrade Notice ==
+
+= 2.9.1 =
+- Release date: 2026-04-11 | 1405-01-22
+- Added fontawesome to exclude list, and set some default options ON by default
 
 = 2.9.0 =
 - Release date: 2026-04-09 | 1405-01-20
