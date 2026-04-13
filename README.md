@@ -4,7 +4,7 @@
 Take control of every outgoing connection your WordPress site makes.<br>
 Block unwanted HTTP requests, dequeue external JS/CSS, and speed up your admin panel.
 
-![Version](https://img.shields.io/badge/version-2.9.1-2271b1?style=flat-square)
+![Version](https://img.shields.io/badge/version-2.9.3-2271b1?style=flat-square)
 ![License](https://img.shields.io/badge/license-GPLv2-green?style=flat-square)
 ![PHP](https://img.shields.io/badge/PHP-5.4%2B-purple?style=flat-square)
 ![WordPress](https://img.shields.io/badge/WordPress-5.0%E2%80%936.8-blue?style=flat-square)
@@ -173,8 +173,9 @@ We welcome contributions! You can:
 
 ## Changelog
 
-### 2.9.2
+### 2.9.3
 * Release date: 2026-04-13 | 1405-01-24
+* Fixed Translation
 * Added `fontawesome` to exclude list
 * Added `cdn.jsdelivr.net` to exclude list
 * Added `unpkg.com` to exclude list

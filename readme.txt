@@ -5,7 +5,7 @@ Tags: external requests, performance, blacklist, whitelist, block http requests
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 2.9.2
+Stable tag: 2.9.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,8 +165,9 @@ We welcome contributions! You can:
 
 == Changelog ==
 
-= 2.9.2 =
+= 2.9.3 =
 * Release date: 2026-04-13 | 1405-01-24
+* Fixed Translation
 * Added `fontawesome` to exclude list
 * Added `cdn.jsdelivr.net` to exclude list
 * Added `unpkg.com` to exclude list
@@ -280,8 +281,9 @@ We welcome contributions! You can:
 
 == Upgrade Notice ==
 
-= 2.9.2 =
+= 2.9.3 =
 - Release date: 2026-04-13 | 1405-01-24
+- Fixed Translation
 - Added `fontawesome` to exclude list
 - Added `cdn.jsdelivr.net` to exclude list
 - Added `unpkg.com` to exclude list

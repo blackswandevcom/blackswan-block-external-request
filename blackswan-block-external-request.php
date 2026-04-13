@@ -8,8 +8,8 @@
  Contributors: blackswanlab, amirhpcom
  Donate link: https://amirhp.com/contact/#payment
  Tags: external requests, performance, blacklist, whitelist, block http requests
- Version: 2.9.2
- Stable tag: 2.9.2
+ Version: 2.9.3
+ Stable tag: 2.9.3
  Requires PHP: 5.4
  Tested up to: 6.8
  Requires at least: 5.0
@@ -19,7 +19,7 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/04/13 16:10:05
+ * @Last modified time: 2026/04/13 17:14:34
 */
 
 namespace BlackSwan;
@@ -28,8 +28,9 @@ defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>BlackSwan | B
 if (!class_exists("\BlackSwan\blockExternalRequest")) {
     class blockExternalRequest {
         public $td = "blackswan-block-external-request";
-        public $version = "2.9.2";
+        public $version = "2.9.3";
         public $title = "Block External Request";
+        protected $assets_url;
         protected $block_url_list;
         protected $whitelist_urls;
         private $option_key = 'bswan_ber_settings';
@@ -189,42 +190,14 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             ['url' => 'fonts.googleapis.com', 'backend' => true, 'frontend' => true],
             ['url' => 'my.elementor.com', 'backend' => true, 'frontend' => true],
         );
-        private static $default_cdn_replacements = array(
-            ['pattern' => 'jquery.js',    'cdn' => 'https://lib.arvancloud.ir/jquery/3.6.3/jquery.js',                                    'backend' => false, 'frontend' => false],
-            ['pattern' => 'bootstrap',    'cdn' => 'https://lib.arvancloud.ir/bootstrap/5.3.0-alpha1/css/bootstrap-grid.css',              'backend' => false, 'frontend' => false],
-        );
-        private static function icon($name, $color = 'currentColor', $size = 18) {
-            $s = $size;
-            $icons = array(
-                'cloud'          => '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
-                'shield'         => '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
-                'shield-check'   => '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
-                'circle-check'   => '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
-                'globe'          => '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
-                'settings'       => '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
-                'monitor'        => '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',
-                'ban'            => '<circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>',
-                'trash'          => '<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>',
-                'pencil'         => '<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>',
-                'x'              => '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
-                'save'           => '<path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"/><path d="M7 3v4a1 1 0 0 0 1 1h7"/>',
-                'pause'          => '<rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/>',
-                'play'           => '<polygon points="6 3 20 12 6 21 6 3"/>',
-                'search'         => '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
-                'check'          => '<path d="M20 6 9 17l-5-5"/>',
-                'download'       => '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>',
-                'upload'         => '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/>',
-                'circle-pause'   => '<circle cx="12" cy="12" r="10"/><line x1="10" x2="10" y1="15" y2="9"/><line x1="14" x2="14" y1="15" y2="9"/>',
-                'circle-play'    => '<circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>',
-                'activity'       => '<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>',
-                'user'           => '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
-                'repeat'         => '<path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
-                'rotate-ccw'     => '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
-            );
-            if (!isset($icons[$name])) return '';
-            return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $s . '" height="' . $s . '" viewBox="0 0 24 24" fill="none" stroke="' . $color . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;flex-shrink:0;">' . $icons[$name] . '</svg>';
-        }
+        private static $default_cdn_replacements = array();
         public function __construct() {
+            $this->assets_url = plugins_url("/assets/", __FILE__);
+            self::$default_cdn_replacements = [
+                ['pattern' => 'jquery.js', 'cdn' => 'https://lib.arvancloud.ir/jquery/3.6.3/jquery.js', 'backend' => false, 'frontend' => false],
+                ['pattern' => 'src-min-noconflict/ace.min.js', 'cdn' => "{$this->assets_url}js/ace.min.js", 'backend' => false, 'frontend' => true],
+                ['pattern' => 'src-min-noconflict/ext-language_tools.js', 'cdn' => "{$this->assets_url}js/ext-language_tools.js", 'backend' => false, 'frontend' => true],
+            ];
 
             load_plugin_textdomain($this->td, false, dirname(plugin_basename(__FILE__)) . "/languages/");
 
@@ -279,6 +252,37 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                 add_action("wp_ajax_bswan_ber_reset", array($this, "ajax_reset_settings"));
                 add_filter("plugin_action_links_" . plugin_basename(__FILE__), array($this, "plugin_action_links"));
             }
+        }
+        private static function icon($name, $color = 'currentColor', $size = 18) {
+            $s = $size;
+            $icons = array(
+                'cloud'          => '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
+                'shield'         => '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
+                'shield-check'   => '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+                'circle-check'   => '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+                'globe'          => '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
+                'settings'       => '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
+                'monitor'        => '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',
+                'ban'            => '<circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>',
+                'trash'          => '<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>',
+                'pencil'         => '<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>',
+                'x'              => '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+                'save'           => '<path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"/><path d="M7 3v4a1 1 0 0 0 1 1h7"/>',
+                'pause'          => '<rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/>',
+                'play'           => '<polygon points="6 3 20 12 6 21 6 3"/>',
+                'search'         => '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+                'check'          => '<path d="M20 6 9 17l-5-5"/>',
+                'download'       => '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>',
+                'upload'         => '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/>',
+                'circle-pause'   => '<circle cx="12" cy="12" r="10"/><line x1="10" x2="10" y1="15" y2="9"/><line x1="14" x2="14" y1="15" y2="9"/>',
+                'circle-play'    => '<circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>',
+                'activity'       => '<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>',
+                'user'           => '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+                'repeat'         => '<path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
+                'rotate-ccw'     => '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+            );
+            if (!isset($icons[$name])) return '';
+            return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $s . '" height="' . $s . '" viewBox="0 0 24 24" fill="none" stroke="' . $color . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;flex-shrink:0;">' . $icons[$name] . '</svg>';
         }
         public function disable_emojis() {
             remove_action('wp_head', 'print_emoji_detection_script', 7);
@@ -499,7 +503,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
         // ─────────────────────────────────────────────
         public function render_settings_page() {
             wp_enqueue_script('postbox');
-            wp_enqueue_style($this->td, plugins_url("assets/admin-style.css", __FILE__), [], current_time("timestamp"), "all");
+            wp_enqueue_style($this->td, "{$this->assets_url}css/admin-style.css", [], $this->version, "all");
             $is_paused        = !empty($this->settings['paused']);
             $is_safe          = $this->is_safe_mode();
             $res_backend      = !empty($this->settings['block_resources_backend']);
@@ -757,7 +761,7 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                                 <!-- Section 3 -->
                                 <div id="bswan-section-avatars" class="postbox bswan-glass closed">
                                     <div class="postbox-header">
-                                        <h2 class="hndle"><?php echo $i['user']; ?> <span><?php _e('Avatars', $this->td); ?></span></h2>
+                                        <h2 class="hndle"><?php echo $i['user']; ?> <span><?php _e('Avatars & Emoji', $this->td); ?></span></h2>
                                         <div class="handle-actions"><button type="button" class="handlediv" aria-expanded="true"><span class="screen-reader-text"><?php _e('Toggle panel', $this->td); ?></span><span class="toggle-indicator" aria-hidden="true"></span></button></div>
                                     </div>
                                     <div class="inside">
@@ -767,6 +771,10 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
                                                 <input type="checkbox" class="switch" id="bswan-disable-avatars" <?php checked($disable_avatars); ?> />
                                                 <label for="bswan-disable-avatars"><span class="switch-x-text"><?php echo $i['user']; ?><?php _e('Disable All Avatars', $this->td); ?></span><span class="switch-x-toggletext"><span class="switch-x-unchecked">Off</span><span class="switch-x-checked">On</span></span></label>
                                             </div>
+                                        </fieldset>
+                                        <br>
+                                        <p class="description"><?php _e('Block WordPress from loading emoji scripts and stylesheets from external CDN services. This improves performance and privacy by removing unnecessary external requests, while still allowing emojis to display using your system\'s native emoji support.', $this->td); ?></p>
+                                        <fieldset class="bswan-checkbox-row" style="margin-top:10px;">
                                             <div class="checkbox-wrapper">
                                                 <input type="checkbox" class="switch" id="bswan-disable-emoji" <?php checked($disable_emoji); ?> />
                                                 <label for="bswan-disable-emoji"><span class="switch-x-text"><?php echo $i['user']; ?><?php _e('Disable All Emoji', $this->td); ?></span><span class="switch-x-toggletext"><span class="switch-x-unchecked">Off</span><span class="switch-x-checked">On</span></span></label>

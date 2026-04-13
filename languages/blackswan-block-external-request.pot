@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BlackSwan Block External Request\n"
-"POT-Creation-Date: 2026-03-23 12:39+0330\n"
+"POT-Creation-Date: 2026-04-13 17:09+0330\n"
 "PO-Revision-Date: 2022-10-24 23:06+0330\n"
 "Last-Translator: Amirhosseinhpv <its@hpv.im>\n"
 "Language-Team: Amirhosseinhpv <its@hpv.im>\n"
@@ -20,305 +20,317 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: blackswan-block-external-request.php:196
+#: blackswan-block-external-request.php:205
 msgid "Block External Request"
 msgstr ""
 
-#: blackswan-block-external-request.php:267
-#: blackswan-block-external-request.php:272
+#: blackswan-block-external-request.php:356
+#: blackswan-block-external-request.php:360
 msgid "Settings"
 msgstr ""
 
-#: blackswan-block-external-request.php:277
-#: blackswan-block-external-request.php:308
-#: blackswan-block-external-request.php:317
+#: blackswan-block-external-request.php:364
+#: blackswan-block-external-request.php:395
+#: blackswan-block-external-request.php:403
 msgid "Permission denied."
 msgstr ""
 
-#: blackswan-block-external-request.php:303
+#: blackswan-block-external-request.php:391
 msgid "Settings saved successfully."
 msgstr ""
 
-#: blackswan-block-external-request.php:311
+#: blackswan-block-external-request.php:398
 msgid "Plugin is now paused. All blocking is disabled."
 msgstr ""
 
-#: blackswan-block-external-request.php:311
+#: blackswan-block-external-request.php:398
 msgid "Plugin is now active. Blocking rules are enforced."
 msgstr ""
 
-#: blackswan-block-external-request.php:322
+#: blackswan-block-external-request.php:408
 msgid "All settings have been reset to defaults."
 msgstr ""
 
-#: blackswan-block-external-request.php:331
+#: blackswan-block-external-request.php:416
 msgid "This request is blocked by 'BlackSwan - Block External Requests' plugin"
 msgstr ""
 
-#: blackswan-block-external-request.php:487
+#: blackswan-block-external-request.php:566
 #, php-format
 msgid "Developed by %s — Another Free & Open-source project by %s"
 msgstr ""
 
-#: blackswan-block-external-request.php:491
+#: blackswan-block-external-request.php:570
 msgid "BlackSwan - Block External Request"
 msgstr ""
 
-#: blackswan-block-external-request.php:494
+#: blackswan-block-external-request.php:573
 msgid "Safe Mode is active."
 msgstr ""
 
-#: blackswan-block-external-request.php:494
+#: blackswan-block-external-request.php:573
 msgid "All blocking rules are temporarily bypassed on this page load."
 msgstr ""
 
-#: blackswan-block-external-request.php:502
+#: blackswan-block-external-request.php:581
 msgid "Plugin is Paused"
 msgstr ""
 
-#: blackswan-block-external-request.php:502
+#: blackswan-block-external-request.php:581
 msgid "Plugin is Active"
 msgstr ""
 
-#: blackswan-block-external-request.php:503
+#: blackswan-block-external-request.php:582
 msgid ""
 "All blocking is temporarily suspended — no requests or resources are being "
 "filtered."
 msgstr ""
 
-#: blackswan-block-external-request.php:503
+#: blackswan-block-external-request.php:582
 msgid "All configured rules are actively enforced on this site."
 msgstr ""
 
-#: blackswan-block-external-request.php:512
+#: blackswan-block-external-request.php:591
 msgid "HTTP Request Blocking"
 msgstr ""
 
-#: blackswan-block-external-request.php:514
+#: blackswan-block-external-request.php:593
 msgid "No domains configured"
 msgstr ""
 
-#: blackswan-block-external-request.php:516
+#: blackswan-block-external-request.php:595
 #, php-format
 msgid "%d domain blocked"
 msgid_plural "%d domains blocked"
 msgstr[0] ""
 msgstr[1] ""
 
-#: blackswan-block-external-request.php:518
+#: blackswan-block-external-request.php:597
 #, php-format
 msgid "%d domain always allowed"
 msgid_plural "%d domains always allowed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: blackswan-block-external-request.php:518
+#: blackswan-block-external-request.php:597
 msgid "No whitelist exceptions"
 msgstr ""
 
-#: blackswan-block-external-request.php:525
+#: blackswan-block-external-request.php:604
 msgid "Script & Style Blocking"
 msgstr ""
 
-#: blackswan-block-external-request.php:527
+#: blackswan-block-external-request.php:606
 msgid "Off"
 msgstr ""
 
-#: blackswan-block-external-request.php:528
+#: blackswan-block-external-request.php:607
 msgid "Not blocking external scripts or styles"
 msgstr ""
 
-#: blackswan-block-external-request.php:530
+#: blackswan-block-external-request.php:609
 msgid "On"
 msgstr ""
 
-#: blackswan-block-external-request.php:531
+#: blackswan-block-external-request.php:610
 msgid "Admin panel"
 msgstr ""
 
-#: blackswan-block-external-request.php:531
+#: blackswan-block-external-request.php:610
 msgid "Website"
 msgstr ""
 
-#: blackswan-block-external-request.php:539
+#: blackswan-block-external-request.php:618
 msgid "Specific Resource Blocking"
 msgstr ""
 
-#: blackswan-block-external-request.php:541
-#: blackswan-block-external-request.php:555
+#: blackswan-block-external-request.php:620
+#: blackswan-block-external-request.php:634
 msgid "None configured"
 msgstr ""
 
-#: blackswan-block-external-request.php:542
+#: blackswan-block-external-request.php:621
 msgid "No individual JS/CSS rules set up"
 msgstr ""
 
-#: blackswan-block-external-request.php:544
+#: blackswan-block-external-request.php:623
 #, php-format
 msgid "%d rule"
 msgid_plural "%d rules"
 msgstr[0] ""
 msgstr[1] ""
 
-#: blackswan-block-external-request.php:545
-#: blackswan-block-external-request.php:559
+#: blackswan-block-external-request.php:624
+#: blackswan-block-external-request.php:638
 #, php-format
 msgid "Admin: %d · Website: %d"
 msgstr ""
 
-#: blackswan-block-external-request.php:553
+#: blackswan-block-external-request.php:632
 msgid "CDN Replacements"
 msgstr ""
 
-#: blackswan-block-external-request.php:555
+#: blackswan-block-external-request.php:634
 #, php-format
 msgid "%d rule (none active)"
 msgid_plural "%d rules (none active)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: blackswan-block-external-request.php:556
+#: blackswan-block-external-request.php:635
 msgid "Resources load from their original source"
 msgstr ""
 
-#: blackswan-block-external-request.php:558
+#: blackswan-block-external-request.php:637
 #, php-format
 msgid "%d rule active"
 msgid_plural "%d rules active"
 msgstr[0] ""
 msgstr[1] ""
 
-#: blackswan-block-external-request.php:567
+#: blackswan-block-external-request.php:646
 msgid "User Avatars"
 msgstr ""
 
-#: blackswan-block-external-request.php:569
+#: blackswan-block-external-request.php:648
 msgid "Avatars disabled"
 msgstr ""
 
-#: blackswan-block-external-request.php:570
+#: blackswan-block-external-request.php:649
 msgid "No Gravatar requests — faster & more private"
 msgstr ""
 
-#: blackswan-block-external-request.php:572
+#: blackswan-block-external-request.php:651
 msgid "Avatars shown"
 msgstr ""
 
-#: blackswan-block-external-request.php:573
+#: blackswan-block-external-request.php:652
 msgid "WordPress loads Gravatars normally"
 msgstr ""
 
-#: blackswan-block-external-request.php:584
+#: blackswan-block-external-request.php:663
 msgid "Configure &amp; Advanced Settings"
 msgstr ""
 
-#: blackswan-block-external-request.php:597
+#: blackswan-block-external-request.php:676
 msgid "Server-side HTTP Requests (PHP)"
 msgstr ""
 
-#: blackswan-block-external-request.php:598
-#: blackswan-block-external-request.php:662
-#: blackswan-block-external-request.php:686
-#: blackswan-block-external-request.php:703
-#: blackswan-block-external-request.php:743
-#: blackswan-block-external-request.php:809
-#: blackswan-block-external-request.php:821
-#: blackswan-block-external-request.php:839
-#: blackswan-block-external-request.php:853
+#: blackswan-block-external-request.php:677
+#: blackswan-block-external-request.php:741
+#: blackswan-block-external-request.php:765
+#: blackswan-block-external-request.php:790
+#: blackswan-block-external-request.php:830
+#: blackswan-block-external-request.php:896
+#: blackswan-block-external-request.php:908
+#: blackswan-block-external-request.php:926
+#: blackswan-block-external-request.php:940
 msgid "Toggle panel"
 msgstr ""
 
-#: blackswan-block-external-request.php:601
+#: blackswan-block-external-request.php:680
 msgid ""
 "Background requests made by WordPress, plugins, and themes via PHP (e.g. "
 "update checks, license verification, REST API calls). They happen on the "
 "server and are invisible to the browser."
 msgstr ""
 
-#: blackswan-block-external-request.php:606
+#: blackswan-block-external-request.php:685
 msgid "Blacklist (Blocked Domains)"
 msgstr ""
 
-#: blackswan-block-external-request.php:611
+#: blackswan-block-external-request.php:690
 msgid "e.g. example.com"
 msgstr ""
 
-#: blackswan-block-external-request.php:612
-#: blackswan-block-external-request.php:637
-#: blackswan-block-external-request.php:721
-#: blackswan-block-external-request.php:761
+#: blackswan-block-external-request.php:691
+#: blackswan-block-external-request.php:716
+#: blackswan-block-external-request.php:808
+#: blackswan-block-external-request.php:848
 msgid "Add"
 msgstr ""
 
-#: blackswan-block-external-request.php:618
+#: blackswan-block-external-request.php:697
 msgid "Domain / URL Pattern"
 msgstr ""
 
-#: blackswan-block-external-request.php:619
-#: blackswan-block-external-request.php:644
-#: blackswan-block-external-request.php:729
-#: blackswan-block-external-request.php:770
-#: blackswan-block-external-request.php:787
+#: blackswan-block-external-request.php:698
+#: blackswan-block-external-request.php:723
+#: blackswan-block-external-request.php:816
+#: blackswan-block-external-request.php:857
+#: blackswan-block-external-request.php:874
 msgid "Actions"
 msgstr ""
 
-#: blackswan-block-external-request.php:625
-#: blackswan-block-external-request.php:650
-#: blackswan-block-external-request.php:735
-#: blackswan-block-external-request.php:776
+#: blackswan-block-external-request.php:704
+#: blackswan-block-external-request.php:729
+#: blackswan-block-external-request.php:822
+#: blackswan-block-external-request.php:863
 msgid "Delete All"
 msgstr ""
 
-#: blackswan-block-external-request.php:631
+#: blackswan-block-external-request.php:710
 msgid "Whitelist (Allowed URL Patterns)"
 msgstr ""
 
-#: blackswan-block-external-request.php:636
+#: blackswan-block-external-request.php:715
 msgid "e.g. //api.wordpress.org/plugins/"
 msgstr ""
 
-#: blackswan-block-external-request.php:643
+#: blackswan-block-external-request.php:722
 msgid "URL Pattern (whitelisted)"
 msgstr ""
 
-#: blackswan-block-external-request.php:661
+#: blackswan-block-external-request.php:740
 msgid "Browser-side Resources by Domain (JS / CSS)"
 msgstr ""
 
-#: blackswan-block-external-request.php:665
+#: blackswan-block-external-request.php:744
 msgid ""
 "When enabled, enqueued JS/CSS from blacklisted domains will be deregistered. "
 "Only external resources are affected. Whitelisted patterns are respected."
 msgstr ""
 
-#: blackswan-block-external-request.php:670
+#: blackswan-block-external-request.php:749
 msgid "Admin Panel (wp-admin)"
 msgstr ""
 
-#: blackswan-block-external-request.php:675
+#: blackswan-block-external-request.php:754
 msgid "Public Frontend"
 msgstr ""
 
-#: blackswan-block-external-request.php:685
-msgid "Avatars"
+#: blackswan-block-external-request.php:764
+msgid "Avatars & Emoji"
 msgstr ""
 
-#: blackswan-block-external-request.php:689
+#: blackswan-block-external-request.php:768
 msgid ""
 "Control WordPress avatar display. When disabled, all avatars (Gravatar and "
 "local) are hidden site-wide — preventing outgoing requests to gravatar.com "
 "and removing avatar markup from comments, profiles, and admin areas."
 msgstr ""
 
-#: blackswan-block-external-request.php:693
+#: blackswan-block-external-request.php:772
 msgid "Disable All Avatars"
 msgstr ""
 
-#: blackswan-block-external-request.php:702
+#: blackswan-block-external-request.php:776
+msgid ""
+"Block WordPress from loading emoji scripts and stylesheets from external CDN "
+"services. This improves performance and privacy by removing unnecessary "
+"external requests, while still allowing emojis to display using your "
+"system's native emoji support."
+msgstr ""
+
+#: blackswan-block-external-request.php:780
+msgid "Disable All Emoji"
+msgstr ""
+
+#: blackswan-block-external-request.php:789
 msgid "Block Specific Resources (by URL)"
 msgstr ""
 
-#: blackswan-block-external-request.php:706
+#: blackswan-block-external-request.php:793
 msgid ""
 "Block individual JS or CSS files by matching against their enqueued URL. "
 "Full URL, partial path, or even just a filename with extension — anything "
@@ -326,47 +338,47 @@ msgid ""
 "external resources."
 msgstr ""
 
-#: blackswan-block-external-request.php:707
+#: blackswan-block-external-request.php:794
 #, php-format
 msgid "Examples: %s · %s · %s"
 msgstr ""
 
-#: blackswan-block-external-request.php:709
+#: blackswan-block-external-request.php:796
 msgid "Full URL, partial path, or filename.ext"
 msgstr ""
 
-#: blackswan-block-external-request.php:713
-#: blackswan-block-external-request.php:753
-#: blackswan-block-external-request.php:1050
-#: blackswan-block-external-request.php:1051
-#: blackswan-block-external-request.php:1230
-#: blackswan-block-external-request.php:1231
+#: blackswan-block-external-request.php:800
+#: blackswan-block-external-request.php:840
+#: blackswan-block-external-request.php:1137
+#: blackswan-block-external-request.php:1138
+#: blackswan-block-external-request.php:1318
+#: blackswan-block-external-request.php:1319
 msgid "Backend"
 msgstr ""
 
-#: blackswan-block-external-request.php:718
-#: blackswan-block-external-request.php:758
-#: blackswan-block-external-request.php:1054
-#: blackswan-block-external-request.php:1055
-#: blackswan-block-external-request.php:1234
-#: blackswan-block-external-request.php:1235
+#: blackswan-block-external-request.php:805
+#: blackswan-block-external-request.php:845
+#: blackswan-block-external-request.php:1141
+#: blackswan-block-external-request.php:1142
+#: blackswan-block-external-request.php:1322
+#: blackswan-block-external-request.php:1323
 msgid "Frontend"
 msgstr ""
 
-#: blackswan-block-external-request.php:727
+#: blackswan-block-external-request.php:814
 msgid "URL Pattern"
 msgstr ""
 
-#: blackswan-block-external-request.php:728
-#: blackswan-block-external-request.php:769
+#: blackswan-block-external-request.php:815
+#: blackswan-block-external-request.php:856
 msgid "Conditions"
 msgstr ""
 
-#: blackswan-block-external-request.php:742
+#: blackswan-block-external-request.php:829
 msgid "CDN Resource Replacements (JS / CSS)"
 msgstr ""
 
-#: blackswan-block-external-request.php:746
+#: blackswan-block-external-request.php:833
 msgid ""
 "Replace enqueued JS or CSS resources with versions served from a CDN. Any "
 "enqueued resource whose URL contains the pattern will have its source "
@@ -374,113 +386,113 @@ msgid ""
 "or faster CDN — for example:"
 msgstr ""
 
-#: blackswan-block-external-request.php:748
+#: blackswan-block-external-request.php:835
 msgid "Pattern (e.g. jquery.js)"
 msgstr ""
 
-#: blackswan-block-external-request.php:749
+#: blackswan-block-external-request.php:836
 #, php-format
 msgid "CDN URL (e.g. %s)"
 msgstr ""
 
-#: blackswan-block-external-request.php:767
+#: blackswan-block-external-request.php:854
 msgid "Pattern"
 msgstr ""
 
-#: blackswan-block-external-request.php:768
+#: blackswan-block-external-request.php:855
 msgid "CDN URL"
 msgstr ""
 
-#: blackswan-block-external-request.php:790
+#: blackswan-block-external-request.php:877
 msgid "Save All Settings"
 msgstr ""
 
-#: blackswan-block-external-request.php:796
-#: blackswan-block-external-request.php:1168
+#: blackswan-block-external-request.php:883
+#: blackswan-block-external-request.php:1256
 msgid "Resume"
 msgstr ""
 
-#: blackswan-block-external-request.php:796
-#: blackswan-block-external-request.php:1175
+#: blackswan-block-external-request.php:883
+#: blackswan-block-external-request.php:1263
 msgid "Pause"
 msgstr ""
 
-#: blackswan-block-external-request.php:801
-#: blackswan-block-external-request.php:1171
+#: blackswan-block-external-request.php:888
+#: blackswan-block-external-request.php:1259
 msgid "Paused — all blocking disabled"
 msgstr ""
 
-#: blackswan-block-external-request.php:801
-#: blackswan-block-external-request.php:1178
+#: blackswan-block-external-request.php:888
+#: blackswan-block-external-request.php:1266
 msgid "Active — blocking rules enforced"
 msgstr ""
 
-#: blackswan-block-external-request.php:808
+#: blackswan-block-external-request.php:895
 msgid "Safe Mode"
 msgstr ""
 
-#: blackswan-block-external-request.php:812
+#: blackswan-block-external-request.php:899
 msgid ""
 "Temporarily disable <strong>all</strong> blocking for a page load. Resource "
 "dequeuing is already skipped on this settings page — safe mode is for other "
 "broken admin pages."
 msgstr ""
 
-#: blackswan-block-external-request.php:813
+#: blackswan-block-external-request.php:900
 msgid "Open in Safe Mode"
 msgstr ""
 
-#: blackswan-block-external-request.php:814
+#: blackswan-block-external-request.php:901
 msgid "Tip: Add <code>&bswan-safe=1</code> to any admin URL."
 msgstr ""
 
-#: blackswan-block-external-request.php:820
+#: blackswan-block-external-request.php:907
 msgid "Tools"
 msgstr ""
 
-#: blackswan-block-external-request.php:825
+#: blackswan-block-external-request.php:912
 msgid "Query Monitor is active."
 msgstr ""
 
-#: blackswan-block-external-request.php:827
+#: blackswan-block-external-request.php:914
 msgid "Activate Query Monitor"
 msgstr ""
 
-#: blackswan-block-external-request.php:828
+#: blackswan-block-external-request.php:915
 msgid ""
 "Installed but not active. Activate to inspect HTTP requests and enqueued "
 "resources."
 msgstr ""
 
-#: blackswan-block-external-request.php:830
+#: blackswan-block-external-request.php:917
 msgid "Install Query Monitor"
 msgstr ""
 
-#: blackswan-block-external-request.php:831
+#: blackswan-block-external-request.php:918
 msgid "See every HTTP request and enqueued resource. Highly recommended."
 msgstr ""
 
-#: blackswan-block-external-request.php:838
+#: blackswan-block-external-request.php:925
 msgid "Export / Import"
 msgstr ""
 
-#: blackswan-block-external-request.php:842
+#: blackswan-block-external-request.php:929
 msgid "All plugin settings as a single JSON file."
 msgstr ""
 
-#: blackswan-block-external-request.php:843
+#: blackswan-block-external-request.php:930
 msgid "Export All Settings"
 msgstr ""
 
-#: blackswan-block-external-request.php:844
+#: blackswan-block-external-request.php:931
 msgid "Import Settings"
 msgstr ""
 
-#: blackswan-block-external-request.php:852
+#: blackswan-block-external-request.php:939
 msgid "Reset Settings"
 msgstr ""
 
-#: blackswan-block-external-request.php:856
+#: blackswan-block-external-request.php:943
 msgid ""
 "Restore all plugin settings to their original defaults. This will "
 "permanently erase your blacklist, whitelist, blocked resources, CDN "
@@ -488,71 +500,71 @@ msgid ""
 "strong>"
 msgstr ""
 
-#: blackswan-block-external-request.php:857
+#: blackswan-block-external-request.php:944
 msgid "Reset to Defaults"
 msgstr ""
 
-#: blackswan-block-external-request.php:864
+#: blackswan-block-external-request.php:951
 msgid "Disclaimer"
 msgstr ""
 
-#: blackswan-block-external-request.php:867
+#: blackswan-block-external-request.php:954
 msgid ""
 "This plugin blocks outgoing HTTP requests and browser resources. May prevent "
 "updates, license checks, fonts, CDN libraries, etc. Use at your own risk. "
 "Always maintain backups."
 msgstr ""
 
-#: blackswan-block-external-request.php:923
-#: blackswan-block-external-request.php:1038
-#: blackswan-block-external-request.php:1214
+#: blackswan-block-external-request.php:1008
+#: blackswan-block-external-request.php:1125
+#: blackswan-block-external-request.php:1302
 msgid "No items."
 msgstr ""
 
-#: blackswan-block-external-request.php:926
-#: blackswan-block-external-request.php:1060
-#: blackswan-block-external-request.php:1240
+#: blackswan-block-external-request.php:1011
+#: blackswan-block-external-request.php:1147
+#: blackswan-block-external-request.php:1328
 msgid "Edit"
 msgstr ""
 
-#: blackswan-block-external-request.php:926
-#: blackswan-block-external-request.php:1061
-#: blackswan-block-external-request.php:1241
+#: blackswan-block-external-request.php:1011
+#: blackswan-block-external-request.php:1148
+#: blackswan-block-external-request.php:1329
 msgid "Delete"
 msgstr ""
 
-#: blackswan-block-external-request.php:976
+#: blackswan-block-external-request.php:1061
 msgid "Are you sure you want to delete all items?"
 msgstr ""
 
-#: blackswan-block-external-request.php:1011
+#: blackswan-block-external-request.php:1097
 msgid "Invalid JSON."
 msgstr ""
 
-#: blackswan-block-external-request.php:1025
+#: blackswan-block-external-request.php:1112
 msgid "Imported. Save to apply."
 msgstr ""
 
-#: blackswan-block-external-request.php:1027
+#: blackswan-block-external-request.php:1114
 msgid "Failed to parse JSON."
 msgstr ""
 
-#: blackswan-block-external-request.php:1113
-#: blackswan-block-external-request.php:1302
+#: blackswan-block-external-request.php:1200
+#: blackswan-block-external-request.php:1390
 msgid "Are you sure?"
 msgstr ""
 
-#: blackswan-block-external-request.php:1146
-#: blackswan-block-external-request.php:1202
+#: blackswan-block-external-request.php:1234
+#: blackswan-block-external-request.php:1290
 msgid "Error."
 msgstr ""
 
-#: blackswan-block-external-request.php:1149
-#: blackswan-block-external-request.php:1206
+#: blackswan-block-external-request.php:1237
+#: blackswan-block-external-request.php:1294
 msgid "Request failed."
 msgstr ""
 
-#: blackswan-block-external-request.php:1188
+#: blackswan-block-external-request.php:1276
 msgid ""
 "Reset ALL settings to plugin defaults?\n"
 "\n"
