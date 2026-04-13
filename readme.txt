@@ -165,8 +165,16 @@ We welcome contributions! You can:
 
 == Changelog ==
 
-= 2.9.1 =
-* Added fontawesome to exclude list, and set some default options ON by default
+= 2.9.2 =
+* Release date: 2026-04-13 | 1405-01-24
+* Added `fontawesome` to exclude list
+* Added `cdn.jsdelivr.net` to exclude list
+* Added `unpkg.com` to exclude list
+* Added `googletagmanager.com` to exclude list
+* Added `cdnjs.cloudflare.com` to exclude list
+* Added `fonts.googleapis.com` to exclude list
+* Added `fonts.gstaticn.com` to exclude list
+* Set some default options ON by default
 
 = 2.9.0 =
 * Added "Disable All Emoji" option: removes WordPress emoji detection script, emoji styles, TinyMCE emoji plugin, and DNS prefetch hints for the emoji CDN — eliminating outgoing requests to s.w.org
@@ -272,9 +280,16 @@ We welcome contributions! You can:
 
 == Upgrade Notice ==
 
-= 2.9.1 =
-- Release date: 2026-04-11 | 1405-01-22
-- Added fontawesome to exclude list, and set some default options ON by default
+= 2.9.2 =
+- Release date: 2026-04-13 | 1405-01-24
+- Added `fontawesome` to exclude list
+- Added `cdn.jsdelivr.net` to exclude list
+- Added `unpkg.com` to exclude list
+- Added `googletagmanager.com` to exclude list
+- Added `cdnjs.cloudflare.com` to exclude list
+- Added `fonts.googleapis.com` to exclude list
+- Added `fonts.gstaticn.com` to exclude list
+- Set some default options ON by default
 
 = 2.9.0 =
 - Release date: 2026-04-09 | 1405-01-20

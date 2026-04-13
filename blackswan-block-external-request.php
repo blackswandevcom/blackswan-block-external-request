@@ -8,8 +8,8 @@
  Contributors: blackswanlab, amirhpcom
  Donate link: https://amirhp.com/contact/#payment
  Tags: external requests, performance, blacklist, whitelist, block http requests
- Version: 2.9.1
- Stable tag: 2.9.1
+ Version: 2.9.2
+ Stable tag: 2.9.2
  Requires PHP: 5.4
  Tested up to: 6.8
  Requires at least: 5.0
@@ -19,7 +19,7 @@
  License: GPLv2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/04/11 13:15:21
+ * @Last modified time: 2026/04/13 16:10:05
 */
 
 namespace BlackSwan;
@@ -28,7 +28,7 @@ defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>BlackSwan | B
 if (!class_exists("\BlackSwan\blockExternalRequest")) {
     class blockExternalRequest {
         public $td = "blackswan-block-external-request";
-        public $version = "2.9.1";
+        public $version = "2.9.2";
         public $title = "Block External Request";
         protected $block_url_list;
         protected $whitelist_urls;
@@ -86,7 +86,12 @@ if (!class_exists("\BlackSwan\blockExternalRequest")) {
             "ip-api.co",
             "gravatar.com",
             "googleapis",
+            "cdn.jsdelivr.net",
+            "unpkg.com",
+            "googletagmanager.com",
+            "cdnjs.cloudflare.com",
             "fonts.googleapis.com",
+            "fonts.gstaticn.com",
             "my.elementor.com"
         );
         private static $default_whitelist = array(
